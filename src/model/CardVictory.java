@@ -9,9 +9,9 @@ public class CardVictory extends Card{
 	 * Constructor Init 
 	 */
 	public CardVictory() {
-		super();
+		super("Domaine",2);
 		System.out.println("Constructor Init CardVictory");
-		nbPoint = 0;
+		nbPoint = 1;
 	}
 
 	/** 
