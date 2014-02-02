@@ -2,10 +2,10 @@ package model;
 
 public class Points {
 
-
 	private int pAction;
 	private int pPurchase;
 	private int pMoney;
+	private int pCard;
 	
 	/**
 	 * Constructor Init
@@ -15,16 +15,18 @@ public class Points {
 		pAction = 0;
 		pPurchase = 0;
 		pMoney = 0;
+		pCard = 0;
 	}
 	
 	/**
 	 * Constructor Param
 	 */
-	public Points(int pa, int pp, int pm) {
+	public Points(int pa, int pp, int pm, int pc) {
 		System.out.println("Constructor Param Points");
 		pAction = pa;
 		pPurchase = pp;
 		pMoney = pm;
+		pCard = pc;
 	}
 	
 	/**
@@ -77,6 +79,20 @@ public class Points {
 	 */
 	public void setPMoney(int pMoney) {
 		this.pMoney = pMoney;
+	}
+
+	/**
+	 * @return the pCard
+	 */
+	public int getpCard() {
+		return pCard;
+	}
+
+	/**
+	 * @param pCard the pCard to set
+	 */
+	public void setpCard(int pCard) {
+		this.pCard = pCard;
 	}
 
 }

@@ -20,5 +20,13 @@ public class HeapDeck extends Heap {
 			myCards.add(c); /* a changer pour a la défausse */
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "HeapDeck [myCards=" + myCards + "]";
+	}
+
 	
 }

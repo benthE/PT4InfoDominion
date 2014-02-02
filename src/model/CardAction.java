@@ -18,11 +18,11 @@ public class CardAction extends Card{
 	/** 
 	 * Constructor Param 
 	 */
-	public CardAction(String n, int p, TypeAction ta, int pa, int pp, int pm) {
+	public CardAction(String n, int p, TypeAction ta, int pa, int pp, int pm, int pc) {
 		super(n, p);
 		System.out.println("Constructor Param CardAction");
 		myTypeAction = ta;
-		myPoints = new Points(pa,pp,pm);
+		myPoints = new Points(pa,pp,pm,pc);
 		
 	}
 	

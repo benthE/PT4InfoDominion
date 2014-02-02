@@ -14,6 +14,7 @@ public class Player {
 	public Player(int num) {
 		this.num = num;
 		System.out.println("Constructor Init Player");
+		this.initPlayer();
 	}
 	
 	public void initPlayer(){
@@ -76,5 +77,15 @@ public class Player {
 	 */
 	public int getNum() {
 		return num;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Player [num=" + num + ", myDeck=" + myDeck.toString() + ", myHand="
+				+ myHand + ", myTrash=" + myTrash + ", myPoints=" + myPoints
+				+ "]";
 	}
 }
