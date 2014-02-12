@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.swing.*;
-import javax.xml.transform.Source;
 
 @SuppressWarnings("serial")
 public class Application extends JFrame implements ActionListener{
@@ -40,20 +39,76 @@ public class Application extends JFrame implements ActionListener{
 		private void initializeGame() throws IOException{
 			
 			setTitle("Dominion - Game");
+			setSize(1000,800);
+			
+			JImagePanel imageFond = new JImagePanel(new File("img/test.jpg"),0,0,true);
+			getContentPane().add(imageFond);
 			
 			
-			JImagePanel imgPnl = new JImagePanel(new File("C://img.jpg"),10,10);
-			//Container cp = getContentPane();
-			//cp.add(imgPnl);	
-			add(imgPnl);
-			show(true);
+			
 		}
 		
-		@SuppressWarnings("deprecation")
+		private void debutPartie(){
+	        setSize(new Dimension(1000,700));
+	        
+	        JLayeredPane tout = new JLayeredPane();
+	        JPanel carteEnMain1 = new JPanel();
+	        JPanel carteEnMain2 = new JPanel();
+	        JPanel carteEnMain3 = new JPanel();
+	        JPanel carteEnMain4 = new JPanel();
+	        JPanel carteEnMain5 = new JPanel();
+	        JPanel carteEnMain6 = new JPanel();
+
+	        ImageIcon image = new ImageIcon("img/test.jpg");
+	        JLabel fond = new JLabel(image);
+	 
+	        ImageIcon emp2 = new ImageIcon(new ImageIcon("img/carteDouves.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
+	        JLabel img = new JLabel(emp2);
+	        
+	        ImageIcon emp3 = new ImageIcon(new ImageIcon("img/carteMilice.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
+	        JLabel milice = new JLabel(emp3);
+	        
+	        ImageIcon emp4 = new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
+	        JLabel marche = new JLabel(emp4);
+	        
+	        ImageIcon emp5 = new ImageIcon(new ImageIcon("img/carteForgeron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
+	        JLabel forgeron = new JLabel(emp5);
+	        
+	        ImageIcon emp6 = new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
+	        JLabel atelier = new JLabel(emp6);
+
+	        carteEnMain1.setBounds(0, 0, 1000, 700);
+	        carteEnMain2.setBounds(150, 400, 100, 200);
+	        carteEnMain3.setBounds(300, 400, 100, 200);
+	        carteEnMain4.setBounds(450, 400, 100, 200);
+	        carteEnMain5.setBounds(600, 400, 100, 200);
+	        carteEnMain6.setBounds(750, 400, 100, 200);
+	        
+	        carteEnMain1.add(fond);
+	        carteEnMain2.add(img);
+	        carteEnMain3.add(milice);
+	        carteEnMain4.add(marche);
+	        carteEnMain5.add(forgeron);
+	        carteEnMain6.add(atelier);
+	        
+	        tout.add(carteEnMain1, new Integer(0));
+	        tout.add(carteEnMain2, new Integer(1));
+	        tout.add(carteEnMain3, new Integer(2));
+	        tout.add(carteEnMain4, new Integer(3));
+	        tout.add(carteEnMain5, new Integer(4));
+	        tout.add(carteEnMain6, new Integer(5));
+
+	        add(tout, BorderLayout.CENTER);
+	        //getContentPane().add(carteEnMain);
+		}
+		
 		public static void main(String[] args) throws IOException {
 			Application app = new Application();
-			app.initializeMainMenu();
+			//app.initializeMainMenu();
 			//app.initializeGame();
+			app.debutPartie();
+			
+			
 			//((JButton) app.getMyPanel().getComponent(0)).addActionListener( new ActionListener() 
 			//{	public void actionPerformed(ActionEvent e) { System.out.println("j'ai cliqué !");app.initializeGame(); }		} );
 			app.show(true);
@@ -78,7 +133,7 @@ public class Application extends JFrame implements ActionListener{
 			Object source = e.getSource();
 			
 			if(source == myButton0){
-				System.out.println("Vous avez cliqué ici.");
+				System.out.println("Vous avez cliquï¿½ ici.");
 				try {
 					initializeGame();
 				} catch (IOException e1) {
