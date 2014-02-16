@@ -48,10 +48,10 @@ public class Application extends JFrame implements ActionListener{
 			
 		}
 		
-		private void debutPartie(){
+		private void debutPartie(JLayeredPane tout){
 	        setSize(new Dimension(1000,700));
 	        
-	        JLayeredPane tout = new JLayeredPane();
+	        //JLayeredPane tout = new JLayeredPane();
 	        JPanel carteEnMain1 = new JPanel();
 	        JPanel carteEnMain2 = new JPanel();
 	        JPanel carteEnMain3 = new JPanel();
@@ -78,11 +78,11 @@ public class Application extends JFrame implements ActionListener{
 	        JLabel atelier = new JLabel(emp6);
 
 	        carteEnMain1.setBounds(0, 0, 1000, 700);
-	        carteEnMain2.setBounds(150, 400, 100, 200);
-	        carteEnMain3.setBounds(300, 400, 100, 200);
-	        carteEnMain4.setBounds(450, 400, 100, 200);
-	        carteEnMain5.setBounds(600, 400, 100, 200);
-	        carteEnMain6.setBounds(750, 400, 100, 200);
+	        carteEnMain2.setBounds(150, 20, 100, 200);
+	        carteEnMain3.setBounds(300, 20, 100, 200);
+	        carteEnMain4.setBounds(450, 20, 100, 200);
+	        carteEnMain5.setBounds(600, 20, 100, 200);
+	        carteEnMain6.setBounds(750, 20, 100, 200);
 	        
 	        carteEnMain1.add(fond);
 	        carteEnMain2.add(img);
@@ -98,19 +98,62 @@ public class Application extends JFrame implements ActionListener{
 	        tout.add(carteEnMain5, new Integer(4));
 	        tout.add(carteEnMain6, new Integer(5));
 
-	        add(tout, BorderLayout.CENTER);
+	        //add(tout, BorderLayout.CENTER);
 	        //getContentPane().add(carteEnMain);
 		}
 		
 		public static void main(String[] args) throws IOException {
 			Application app = new Application();
-			//app.initializeMainMenu();
-			//app.initializeGame();
-			app.debutPartie();
+
+			JLayeredPane all = new JLayeredPane();
 			
+			app.debutPartie(all);
 			
-			//((JButton) app.getMyPanel().getComponent(0)).addActionListener( new ActionListener() 
-			//{	public void actionPerformed(ActionEvent e) { System.out.println("j'ai cliqué !");app.initializeGame(); }		} );
+			Player p = new Player(0);
+			p.initPlayer();
+			p.updateCards();
+						
+			ImageIcon empCuivre = new ImageIcon(new ImageIcon("img/carteCuivre.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
+			ImageIcon empDomaine = new ImageIcon(new ImageIcon("img/carteDomaine.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
+			
+			String tmp;
+			JLabel card[] = new JLabel[20];
+			JPanel handCard[] = new JPanel[20];
+			int i;
+			for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
+			{
+				handCard[i] = new JPanel();
+				handCard[i].setBounds((i+1)*150, 250, 100, 200);
+				
+				tmp = p.getMyHand().getMyCards().get(i).getName();
+				
+				if( tmp == "Domaine")
+					card[i] = new JLabel(empDomaine);
+				else if( tmp == "Cuivre")
+					card[i] = new JLabel(empCuivre);
+			
+				handCard[i].add(card[i]);
+				all.add(handCard[i],new Integer(i+5));
+			}
+			int tmp1 = i;
+			for( int j = tmp1; j<p.getMyDeck().getMyCards().size()+tmp1; j++)
+			{
+				handCard[j] = new JPanel();
+				handCard[j].setBounds(((j-tmp1)+1)*150, 550, 100, 200);
+				
+				tmp = p.getMyDeck().getMyCards().get((j-tmp1)).getName();
+				
+				if( tmp == "Domaine")
+					card[j] = new JLabel(empDomaine);
+				else if( tmp == "Cuivre")
+					card[j] = new JLabel(empCuivre);
+			
+				handCard[j].add(card[j]);
+				all.add(handCard[j],new Integer(j+5));
+			}
+			
+			app.add(all);
+	        
 			app.show(true);
 		}
 

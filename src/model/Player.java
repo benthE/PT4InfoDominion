@@ -24,6 +24,20 @@ public class Player {
 		myTrash = new HeapTrash();
 	}
 	
+	public void updateCards(){
+		int nb = 0;
+		if( myHand.getMyCards().size() == 0)
+		{
+			while(myHand.getMyCards().size() < 5)
+			{
+				nb = (int) (Math.random() * myDeck.getMyCards().size());
+				myHand.addCard(myDeck.getMyCards().get(nb));
+				myDeck.getMyCards().remove(nb);
+			}
+		}
+			
+	}
+	
 	/**
 	 * @return the myDeck
 	 */

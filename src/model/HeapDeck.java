@@ -16,8 +16,7 @@ public class HeapDeck extends Heap {
 	
 	@Override
 	public void addCard(Card c) {
-		if(myCards.size()==0)
-			myCards.add(c); /* a changer pour a la défausse */
+		myCards.add(c); /* cette fonction est inutile pour linstant */
 	}
 
 	/* (non-Javadoc)
