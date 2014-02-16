@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.swing.*;
 
@@ -48,74 +49,56 @@ public class Application extends JFrame implements ActionListener{
 			
 		}
 		
-		private void debutPartie(JLayeredPane tout){
+		private void debutPartie(JLayeredPane tout, BoardGame bG,HashMap<String,ImageIcon> img){
 	        setSize(new Dimension(1000,700));
-	        
-	        //JLayeredPane tout = new JLayeredPane();
-	        JPanel carteEnMain1 = new JPanel();
-	        JPanel carteEnMain2 = new JPanel();
-	        JPanel carteEnMain3 = new JPanel();
-	        JPanel carteEnMain4 = new JPanel();
-	        JPanel carteEnMain5 = new JPanel();
-	        JPanel carteEnMain6 = new JPanel();
+	        JLabel fond = new JLabel(img.get("test"));
 
-	        ImageIcon image = new ImageIcon("img/test.jpg");
-	        JLabel fond = new JLabel(image);
-	 
-	        ImageIcon emp2 = new ImageIcon(new ImageIcon("img/carteDouves.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
-	        JLabel img = new JLabel(emp2);
+	        JPanel board[] = new JPanel[17];
+	        JLabel card[] = new JLabel[17];
 	        
-	        ImageIcon emp3 = new ImageIcon(new ImageIcon("img/carteMilice.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
-	        JLabel milice = new JLabel(emp3);
+	        card[0] = new JLabel(img.get("Douves"));
 	        
-	        ImageIcon emp4 = new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
-	        JLabel marche = new JLabel(emp4);
+	        card[1] = new JLabel(img.get("Milice"));
 	        
-	        ImageIcon emp5 = new ImageIcon(new ImageIcon("img/carteForgeron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
-	        JLabel forgeron = new JLabel(emp5);
-	        
-	        ImageIcon emp6 = new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
-	        JLabel atelier = new JLabel(emp6);
+	        card[2] = new JLabel(img.get("Marche"));
+	        	        
+	        card[3] = new JLabel(img.get("Forgeron"));
 
-	        carteEnMain1.setBounds(0, 0, 1000, 700);
-	        carteEnMain2.setBounds(150, 20, 100, 200);
-	        carteEnMain3.setBounds(300, 20, 100, 200);
-	        carteEnMain4.setBounds(450, 20, 100, 200);
-	        carteEnMain5.setBounds(600, 20, 100, 200);
-	        carteEnMain6.setBounds(750, 20, 100, 200);
+	        card[4] = new JLabel(img.get("Atelier"));
+
+	        board[0] = new JPanel();
+	        board[1] = new JPanel();
+	        board[2] = new JPanel();
+	        board[3] = new JPanel();
+	        board[4] = new JPanel();
+	        board[5] = new JPanel();
 	        
-	        carteEnMain1.add(fond);
-	        carteEnMain2.add(img);
-	        carteEnMain3.add(milice);
-	        carteEnMain4.add(marche);
-	        carteEnMain5.add(forgeron);
-	        carteEnMain6.add(atelier);
+	        board[0].setBounds(0, 0, 1000, 700);
+	        board[1].setBounds(150, 20, 100, 200);
+	        board[2].setBounds(300, 20, 100, 200);
+	        board[3].setBounds(450, 20, 100, 200);
+	        board[4].setBounds(600, 20, 100, 200);
+	        board[5].setBounds(750, 20, 100, 200);
 	        
-	        tout.add(carteEnMain1, new Integer(0));
-	        tout.add(carteEnMain2, new Integer(1));
-	        tout.add(carteEnMain3, new Integer(2));
-	        tout.add(carteEnMain4, new Integer(3));
-	        tout.add(carteEnMain5, new Integer(4));
-	        tout.add(carteEnMain6, new Integer(5));
+	        board[0].add(fond);
+	        board[1].add(card[0]);
+	        board[2].add(card[1]);
+	        board[3].add(card[2]);
+	        board[4].add(card[3]);
+	        board[5].add(card[4]);
+	        
+	        tout.add(board[0], new Integer(0));
+	        tout.add(board[1], new Integer(1));
+	        tout.add(board[2], new Integer(2));
+	        tout.add(board[3], new Integer(3));
+	        tout.add(board[4], new Integer(4));
+	        tout.add(board[5], new Integer(5));
 
 	        //add(tout, BorderLayout.CENTER);
 	        //getContentPane().add(carteEnMain);
 		}
 		
-		public static void main(String[] args) throws IOException {
-			Application app = new Application();
-
-			JLayeredPane all = new JLayeredPane();
-			
-			app.debutPartie(all);
-			
-			Player p = new Player(0);
-			p.initPlayer();
-			p.updateCards();
-						
-			ImageIcon empCuivre = new ImageIcon(new ImageIcon("img/carteCuivre.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
-			ImageIcon empDomaine = new ImageIcon(new ImageIcon("img/carteDomaine.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT));
-			
+		public void displayPlayer(JLayeredPane all, Player p,HashMap<String,ImageIcon> img){
 			String tmp;
 			JLabel card[] = new JLabel[20];
 			JPanel handCard[] = new JPanel[20];
@@ -128,9 +111,9 @@ public class Application extends JFrame implements ActionListener{
 				tmp = p.getMyHand().getMyCards().get(i).getName();
 				
 				if( tmp == "Domaine")
-					card[i] = new JLabel(empDomaine);
+					card[i] = new JLabel(img.get("Domaine"));
 				else if( tmp == "Cuivre")
-					card[i] = new JLabel(empCuivre);
+					card[i] = new JLabel(img.get("Cuivre"));
 			
 				handCard[i].add(card[i]);
 				all.add(handCard[i],new Integer(i+5));
@@ -144,13 +127,36 @@ public class Application extends JFrame implements ActionListener{
 				tmp = p.getMyDeck().getMyCards().get((j-tmp1)).getName();
 				
 				if( tmp == "Domaine")
-					card[j] = new JLabel(empDomaine);
+					card[j] = new JLabel(img.get("Domaine"));
 				else if( tmp == "Cuivre")
-					card[j] = new JLabel(empCuivre);
+					card[j] = new JLabel(img.get("Cuivre"));
 			
 				handCard[j].add(card[j]);
 				all.add(handCard[j],new Integer(j+5));
 			}
+		}
+		
+		public static void main(String[] args) throws IOException {
+			Application app = new Application();
+			HashMap<String,ImageIcon> myImgs = new HashMap<String,ImageIcon>();
+			
+			myImgs.put("Cuivre",new ImageIcon(new ImageIcon("img/carteCuivre.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Domaine",new ImageIcon(new ImageIcon("img/carteDomaine.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Douves",new ImageIcon(new ImageIcon("img/carteDouves.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Milice",new ImageIcon(new ImageIcon("img/carteMilice.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Marche",new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Forgeron",new ImageIcon(new ImageIcon("img/carteForgeron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Atelier",new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("test",new ImageIcon("img/test.jpg"));
+			
+			JLayeredPane all = new JLayeredPane();
+			
+			BoardGame bG = new BoardGame();
+			bG.initPlayers();
+			bG.initCards();
+			
+			app.debutPartie(all,bG,myImgs);
+			app.displayPlayer(all,bG.getMyPlayers().get(0),myImgs);
 			
 			app.add(all);
 	        
