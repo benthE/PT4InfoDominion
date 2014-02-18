@@ -3,20 +3,21 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class boardGame {
+public class BoardGame {
 
 	private ArrayList<Player> myPlayers=null;
 	private HashMap<Integer,Card> myCards=null;
 	private int nbRound;
 	
 	
-	public boardGame() {
+	public BoardGame() {
 		nbRound = 0;
 	}
 
 	public void initPlayers(){
 		myPlayers = new ArrayList<Player>();
-		myPlayers.add(new Player(1));
+		myPlayers.add(new Player(0));
+		myPlayers.get(0).updateCards();
 	}
 	
 	public void initCards(){
@@ -50,7 +51,7 @@ public class boardGame {
 	}
 	
 	public static void main(String[] args) {
-		boardGame bG = new boardGame();
+		BoardGame bG = new BoardGame();
 		bG.initPlayers();
 		bG.initCards();
 		System.out.println(bG.myPlayers.toString());
