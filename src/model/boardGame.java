@@ -3,14 +3,14 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class BoardGame {
+public class boardGame {
 
 	private ArrayList<Player> myPlayers=null;
 	private HashMap<Integer,Card> myCards=null;
 	private int nbRound;
 	
 	
-	public BoardGame() {
+	public boardGame() {
 		nbRound = 0;
 	}
 
@@ -51,7 +51,7 @@ public class BoardGame {
 	}
 	
 	public static void main(String[] args) {
-		BoardGame bG = new BoardGame();
+		boardGame bG = new boardGame();
 		bG.initPlayers();
 		bG.initCards();
 		System.out.println(bG.myPlayers.toString());
