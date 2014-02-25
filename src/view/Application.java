@@ -1,11 +1,8 @@
 package view;
 
 import model.*;
-import displayClass.*;
-
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -18,40 +15,10 @@ public class Application extends JFrame implements ActionListener{
 		JButton myButton0;
 		JButton buttonBuy;
 
-		
 		private int aideJoueurOr =0;
-		private int nbCartes =0;
 		
 		public Application() {
 			super();
-		}
-
-		private void initializeMainMenu() {
-			setTitle("Dominion - Menu Principal");
-			setSize(800,600);
-			setDefaultCloseOperation(3);
-			setVisible(true);
-			
-			myPanel = new JPanel(); 
-			myPanel.setBackground(Color.blue);
-			myPanel.setLayout(null);
-			myButton0 = new JButton("Jouer");
-			myButton0.setBounds(80,80,100,60);
-			myButton0.addActionListener(this);
-			myPanel.add(myButton0);
-			setContentPane(myPanel);
-		}
-		
-		private void initializeGame() throws IOException{
-			
-			setTitle("Dominion - Game");
-			setSize(1000,800);
-			
-			JImagePanel imageFond = new JImagePanel(new File("img/test.jpg"),0,0,true);
-			getContentPane().add(imageFond);
-			
-			
-			
 		}
 		
 		private void debutPartie(JLayeredPane tout, boardGame bG,HashMap<String,ImageIcon> img){
@@ -63,9 +30,6 @@ public class Application extends JFrame implements ActionListener{
 	        
 	        JLabel aideOr = new JLabel();
 	        aideOr.setText("Pièces d'or : " + getJoueurOr());
-	        
-	        JLabel aideNbCartes = new JLabel();
-	        aideNbCartes.setText("" +getNbCartes());
 	        
 	        buttonBuy = new JButton("+");
 			buttonBuy.addActionListener(this);
@@ -79,9 +43,6 @@ public class Application extends JFrame implements ActionListener{
 	        card[3] = new JLabel(img.get("Forgeron"));
 
 	        card[4] = new JLabel(img.get("Atelier"));
-	        
-	        card[5] = new JLabel(img.get("dos"));
-
 
 	        board[0] = new JPanel();
 	        board[1] = new JPanel();
@@ -91,9 +52,6 @@ public class Application extends JFrame implements ActionListener{
 	        board[5] = new JPanel();
 	        board[6] = new JPanel();
 	        board[7] = new JPanel();
-	        board[8] = new JPanel();
-	        board[9] = new JPanel(); 
-	        
 
 	        board[0].setBounds(0, 0, 1000, 700);
 	        board[1].setBounds(250, 20, 100, 200);
@@ -103,9 +61,7 @@ public class Application extends JFrame implements ActionListener{
 	        board[5].setBounds(650, 20, 100, 200);
 	        board[6].setBounds(875, 350, 100, 30);
 	        board[7].setBounds(305, 190, 30, 30);
-	        board[8].setBounds(10, 250, 100, 200);
-	        board[9].setBounds(50, 340, 20, 20);
-	        
+
 	        board[0].add(fond);
 	        board[1].add(card[0]);
 	        board[2].add(card[1]);
@@ -114,8 +70,6 @@ public class Application extends JFrame implements ActionListener{
 	        board[5].add(card[4]);
 	        board[6].add(aideOr);
 	        board[7].add(buttonBuy);
-	        board[8].add(card[5]);
-	        board[9].add(aideNbCartes);
 
 	        
 	        tout.add(board[0], new Integer(0));
@@ -126,56 +80,6 @@ public class Application extends JFrame implements ActionListener{
 	        tout.add(board[5], new Integer(5));
 	        tout.add(board[6], new Integer(6));
 	        tout.add(board[7], new Integer(7));
-	        tout.add(board[8], new Integer(8));
-	        tout.add(board[9], new Integer(9));
-
-	        //add(tout, BorderLayout.CENTER);
-	        //getContentPane().add(carteEnMain);
-		}
-		
-		public void displayPlayer(JLayeredPane all, Player p,HashMap<String,ImageIcon> img){
-			String tmp;
-			JLabel card[] = new JLabel[20];
-			JPanel handCard[] = new JPanel[20];
-			int i;
-			for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
-			{
-				handCard[i] = new JPanel();
-				handCard[i].setBounds((i+1)*150, 460, 100, 200);
-			
-				tmp = p.getMyHand().getMyCards().get(i).getName();
-				
-				if( tmp == "Domaine")
-					card[i] = new JLabel(img.get("Domaine"));
-				else if( tmp == "Cuivre"){
-					card[i] = new JLabel(img.get("Cuivre"));
-					setJoueurOr(1);
-				}
-			
-				handCard[i].add(card[i]);
-				all.add(handCard[i],new Integer(i+5));
-				
-			}
-			int tmp1 = i;
-			for( int j = tmp1; j<p.getMyDeck().getMyCards().size()+tmp1; j++)
-			{
-				handCard[j] = new JPanel();
-				handCard[j].setBounds(10, ((j-tmp1)+1)*100, 100, 200);
-				
-				tmp = p.getMyDeck().getMyCards().get((j-tmp1)).getName();
-				
-				if( tmp == "Domaine"){
-					card[j] = new JLabel(img.get("Domaine"));
-					setNbCartes(1);
-				}
-				else if( tmp == "Cuivre"){
-					card[j] = new JLabel(img.get("Cuivre"));
-					setNbCartes(1);
-				}
-			
-				handCard[j].add(card[j]);
-				//all.add(handCard[j],new Integer(j+5));
-			}
 		}
 		
 		public static void main(String[] args) throws IOException {
@@ -189,7 +93,7 @@ public class Application extends JFrame implements ActionListener{
 			myImgs.put("Marche",new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("Forgeron",new ImageIcon(new ImageIcon("img/carteForgeron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("Atelier",new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("dos",new ImageIcon(new ImageIcon("img/dos.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Dos",new ImageIcon(new ImageIcon("img/dos.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("test",new ImageIcon("img/test.jpg"));
 			
 			JLayeredPane all = new JLayeredPane();
@@ -198,7 +102,7 @@ public class Application extends JFrame implements ActionListener{
 			bG.initPlayers();
 			bG.initCards();
 			
-			app.displayPlayer(all,bG.getMyPlayers().get(0),myImgs);
+			DisplayPlayer dp = new DisplayPlayer(all,bG.getMyPlayers().get(0),myImgs,app);
 			app.debutPartie(all,bG,myImgs);
 			
 			app.add(all);
@@ -228,27 +132,12 @@ public class Application extends JFrame implements ActionListener{
 			aideJoueurOr+=a;
 		}
 		
-		public int getNbCartes(){
-			return nbCartes;
-		}
-		
-		public void setNbCartes(int a){
-			nbCartes+=a;
-		}
-
-		@Override
+		//***************** INUTILE ******************
 		public void actionPerformed(ActionEvent e) {
 			Object source = e.getSource();
 			
 			if(source == myButton0){
-				System.out.println("Vous avez cliquï¿½ ici.");
-				try {
-					initializeGame();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					System.out.println("exception");
-					e1.printStackTrace();
-				}
+				System.out.println("Vous avez cliqué ici.");
 			} 
 		}
 		
