@@ -17,8 +17,10 @@ public class Application extends JFrame implements ActionListener{
 		JPanel myPanel;
 		JButton myButton0;
 		JButton buttonBuy;
+
 		
 		private int aideJoueurOr =0;
+		private int nbCartes =0;
 		
 		public Application() {
 			super();
@@ -62,6 +64,9 @@ public class Application extends JFrame implements ActionListener{
 	        JLabel aideOr = new JLabel();
 	        aideOr.setText("Pièces d'or : " + getJoueurOr());
 	        
+	        JLabel aideNbCartes = new JLabel();
+	        aideNbCartes.setText("" +getNbCartes());
+	        
 	        buttonBuy = new JButton("+");
 			buttonBuy.addActionListener(this);
 	       	        
@@ -74,6 +79,9 @@ public class Application extends JFrame implements ActionListener{
 	        card[3] = new JLabel(img.get("Forgeron"));
 
 	        card[4] = new JLabel(img.get("Atelier"));
+	        
+	        card[5] = new JLabel(img.get("dos"));
+
 
 	        board[0] = new JPanel();
 	        board[1] = new JPanel();
@@ -83,6 +91,9 @@ public class Application extends JFrame implements ActionListener{
 	        board[5] = new JPanel();
 	        board[6] = new JPanel();
 	        board[7] = new JPanel();
+	        board[8] = new JPanel();
+	        board[9] = new JPanel(); 
+	        
 
 	        board[0].setBounds(0, 0, 1000, 700);
 	        board[1].setBounds(250, 20, 100, 200);
@@ -92,7 +103,9 @@ public class Application extends JFrame implements ActionListener{
 	        board[5].setBounds(650, 20, 100, 200);
 	        board[6].setBounds(875, 350, 100, 30);
 	        board[7].setBounds(305, 190, 30, 30);
-
+	        board[8].setBounds(10, 250, 100, 200);
+	        board[9].setBounds(50, 340, 20, 20);
+	        
 	        board[0].add(fond);
 	        board[1].add(card[0]);
 	        board[2].add(card[1]);
@@ -101,6 +114,9 @@ public class Application extends JFrame implements ActionListener{
 	        board[5].add(card[4]);
 	        board[6].add(aideOr);
 	        board[7].add(buttonBuy);
+	        board[8].add(card[5]);
+	        board[9].add(aideNbCartes);
+
 	        
 	        tout.add(board[0], new Integer(0));
 	        tout.add(board[1], new Integer(1));
@@ -110,7 +126,8 @@ public class Application extends JFrame implements ActionListener{
 	        tout.add(board[5], new Integer(5));
 	        tout.add(board[6], new Integer(6));
 	        tout.add(board[7], new Integer(7));
-
+	        tout.add(board[8], new Integer(8));
+	        tout.add(board[9], new Integer(9));
 
 	        //add(tout, BorderLayout.CENTER);
 	        //getContentPane().add(carteEnMain);
@@ -124,7 +141,7 @@ public class Application extends JFrame implements ActionListener{
 			for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
 			{
 				handCard[i] = new JPanel();
-				handCard[i].setBounds((i+1)*175, 500, 100, 200);
+				handCard[i].setBounds((i+1)*150, 460, 100, 200);
 			
 				tmp = p.getMyHand().getMyCards().get(i).getName();
 				
@@ -147,13 +164,17 @@ public class Application extends JFrame implements ActionListener{
 				
 				tmp = p.getMyDeck().getMyCards().get((j-tmp1)).getName();
 				
-				if( tmp == "Domaine")
+				if( tmp == "Domaine"){
 					card[j] = new JLabel(img.get("Domaine"));
-				else if( tmp == "Cuivre")
+					setNbCartes(1);
+				}
+				else if( tmp == "Cuivre"){
 					card[j] = new JLabel(img.get("Cuivre"));
+					setNbCartes(1);
+				}
 			
 				handCard[j].add(card[j]);
-				all.add(handCard[j],new Integer(j+5));
+				//all.add(handCard[j],new Integer(j+5));
 			}
 		}
 		
@@ -168,6 +189,7 @@ public class Application extends JFrame implements ActionListener{
 			myImgs.put("Marche",new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("Forgeron",new ImageIcon(new ImageIcon("img/carteForgeron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("Atelier",new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("dos",new ImageIcon(new ImageIcon("img/dos.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("test",new ImageIcon("img/test.jpg"));
 			
 			JLayeredPane all = new JLayeredPane();
@@ -205,6 +227,14 @@ public class Application extends JFrame implements ActionListener{
 		public void setJoueurOr(int a){
 			aideJoueurOr+=a;
 		}
+		
+		public int getNbCartes(){
+			return nbCartes;
+		}
+		
+		public void setNbCartes(int a){
+			nbCartes+=a;
+		}
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -221,6 +251,8 @@ public class Application extends JFrame implements ActionListener{
 				}
 			} 
 		}
+		
+		
 
 	}
 
