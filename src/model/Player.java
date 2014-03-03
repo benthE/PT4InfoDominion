@@ -3,9 +3,9 @@ package model;
 public class Player {
 
 	private final int num;
-	private HeapDeck myDeck=null;
-	private HeapHand myHand=null;
-	private HeapTrash myTrash=null;
+	private PaketDeck myDeck=null;
+	private PaketHand myHand=null;
+	private PaketTrash myTrash=null;
 	private Points myPoints=null;
 	
 	/**
@@ -18,10 +18,10 @@ public class Player {
 	}
 	
 	public void initPlayer(){
-		myDeck = new HeapDeck();
+		myDeck = new PaketDeck();
 		myDeck.initDeck();
-		myHand = new HeapHand();
-		myTrash = new HeapTrash();
+		myHand = new PaketHand();
+		myTrash = new PaketTrash();
 	}
 	
 	public void updateCards(){
@@ -37,37 +37,37 @@ public class Player {
 	/**
 	 * @return the myDeck
 	 */
-	public HeapDeck getMyDeck() {
+	public PaketDeck getMyDeck() {
 		return myDeck;
 	}
 	/**
 	 * @param myDeck the myDeck to set
 	 */
-	public void setMyDeck(HeapDeck myDeck) {
+	public void setMyDeck(PaketDeck myDeck) {
 		this.myDeck = myDeck;
 	}
 	/**
 	 * @return the myHand
 	 */
-	public HeapHand getMyHand() {
+	public PaketHand getMyHand() {
 		return myHand;
 	}
 	/**
 	 * @param myHand the myHand to set
 	 */
-	public void setMyHand(HeapHand myHand) {
+	public void setMyHand(PaketHand myHand) {
 		this.myHand = myHand;
 	}
 	/**
 	 * @return the myTrash
 	 */
-	public HeapTrash getMyTrash() {
+	public PaketTrash getMyTrash() {
 		return myTrash;
 	}
 	/**
 	 * @param myTrash the myTrash to set
 	 */
-	public void setMyTrash(HeapTrash myTrash) {
+	public void setMyTrash(PaketTrash myTrash) {
 		this.myTrash = myTrash;
 	}
 	/**

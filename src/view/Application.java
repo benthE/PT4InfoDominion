@@ -25,69 +25,65 @@ public class Application extends JFrame implements ActionListener{
 	        setSize(new Dimension(1000,700));
 	        JLabel fond = new JLabel(img.get("test"));
 
-	        JPanel board[] = new JPanel[17];
-	        JLabel card[] = new JLabel[17];
+	        JPanel board[] = new JPanel[20];
+	        JLabel card[] = new JLabel[20];
 	        
 	        JLabel aideOr = new JLabel();
 	        aideOr.setText("Pièces d'or : " + getJoueurOr());
 	        
-	        buttonBuy = new JButton("+");
-			buttonBuy.addActionListener(this);
-	       	        
-	        card[0] = new JLabel(img.get("Douves"));
+	        //buttonBuy = new JButton("+");
+			//buttonBuy.addActionListener(this);
 	        
-	        card[1] = new JLabel(img.get("Milice"));
-	        
-	        card[2] = new JLabel(img.get("Marche"));
-	        	        
-	        card[3] = new JLabel(img.get("Forgeron"));
-
-	        card[4] = new JLabel(img.get("Atelier"));
-
 	        board[0] = new JPanel();
-	        board[1] = new JPanel();
-	        board[2] = new JPanel();
-	        board[3] = new JPanel();
-	        board[4] = new JPanel();
-	        board[5] = new JPanel();
-	        board[6] = new JPanel();
-	        board[7] = new JPanel();
-
 	        board[0].setBounds(0, 0, 1000, 700);
-	        board[1].setBounds(250, 20, 100, 200);
-	        board[2].setBounds(350, 20, 100, 200);
-	        board[3].setBounds(450, 20, 100, 200);
-	        board[4].setBounds(550, 20, 100, 200);
-	        board[5].setBounds(650, 20, 100, 200);
-	        board[6].setBounds(875, 350, 100, 30);
-	        board[7].setBounds(305, 190, 30, 30);
-
 	        board[0].add(fond);
-	        board[1].add(card[0]);
-	        board[2].add(card[1]);
-	        board[3].add(card[2]);
-	        board[4].add(card[3]);
-	        board[5].add(card[4]);
-	        board[6].add(aideOr);
-	        board[7].add(buttonBuy);
-
+	        board[0].add(fond);
+	        tout.add(board[0],new Integer(0));
 	        
-	        tout.add(board[0], new Integer(0));
-	        tout.add(board[1], new Integer(1));
-	        tout.add(board[2], new Integer(2));
-	        tout.add(board[3], new Integer(3));
-	        tout.add(board[4], new Integer(4));
-	        tout.add(board[5], new Integer(5));
-	        tout.add(board[6], new Integer(6));
-	        tout.add(board[7], new Integer(7));
+	        for(int i=1; i<18; i++)
+	        {
+		        card[i-1] = new JLabel(img.get(bG.getMyCards().get(i).getMyCard().getName()));
+	
+		        board[i] = new JPanel();
+		        if (i>14)
+		    		board[i].setBounds(780, 20+(i-14)*50, 100, 200);
+		        else if (i>10)
+		    		board[i].setBounds(130, 20+(i-10)*50, 100, 200);
+		        else if(i>5)
+		        	board[i].setBounds(150+((i-5)*100), 240, 100, 200);
+		        else
+		        	board[i].setBounds(150+(i*100), 20, 100, 200);
+		        board[i].add(card[i-1]);
+		        
+		        tout.add(board[i],new Integer(i));
+	       	}
 		}
 		
 		public static void main(String[] args) throws IOException {
 			Application app = new Application();
 			HashMap<String,ImageIcon> myImgs = new HashMap<String,ImageIcon>();
 			
+			/**
+			 * Cartes Trésor
+			 */
 			myImgs.put("Cuivre",new ImageIcon(new ImageIcon("img/carteCuivre.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Argent",new ImageIcon(new ImageIcon("img/carteArgent.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Or",new ImageIcon(new ImageIcon("img/carteOr.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			
+			/**
+			 * Cartes Victoire
+			 */
 			myImgs.put("Domaine",new ImageIcon(new ImageIcon("img/carteDomaine.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Duche",new ImageIcon(new ImageIcon("img/carteDuche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Province",new ImageIcon(new ImageIcon("img/carteProvince.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Malediction",new ImageIcon(new ImageIcon("img/carteMalediction.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			
+			/**
+			 * Cartes Action
+			 */
+			myImgs.put("Bucheron",new ImageIcon(new ImageIcon("img/carteBucheron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Cave",new ImageIcon(new ImageIcon("img/carteCave.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+			myImgs.put("Mine",new ImageIcon(new ImageIcon("img/carteMine.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("Douves",new ImageIcon(new ImageIcon("img/carteDouves.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("Milice",new ImageIcon(new ImageIcon("img/carteMilice.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 			myImgs.put("Marche",new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));

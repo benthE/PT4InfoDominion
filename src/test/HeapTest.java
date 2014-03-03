@@ -14,7 +14,7 @@ import org.junit.Test;
 public class HeapTest {
 
 	/**
-	 * Test method for {@link model.Heap#Heap()}.
+	 * Test method for {@link model.Paket#Heap()}.
 	 */
 	@Test
 	public void testHeap() {
@@ -22,7 +22,7 @@ public class HeapTest {
 	}
 
 	/**
-	 * Test method for {@link model.Heap#getMyCards()}.
+	 * Test method for {@link model.Paket#getMyCards()}.
 	 */
 	@Test
 	public void testGetMyCards() {
@@ -30,7 +30,7 @@ public class HeapTest {
 	}
 
 	/**
-	 * Test method for {@link model.Heap#setMyCards(java.util.ArrayList)}.
+	 * Test method for {@link model.Paket#setMyCards(java.util.ArrayList)}.
 	 */
 	@Test
 	public void testSetMyCards() {
@@ -38,7 +38,7 @@ public class HeapTest {
 	}
 
 	/**
-	 * Test method for {@link model.Heap#addCard(model.Card)}.
+	 * Test method for {@link model.Paket#addCard(model.Card)}.
 	 */
 	@Test
 	public void testAddCard() {

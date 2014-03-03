@@ -14,7 +14,7 @@ import org.junit.Test;
 public class HeapTrashTest {
 
 	/**
-	 * Test method for {@link model.HeapTrash#addCard(model.Card)}.
+	 * Test method for {@link model.PaketTrash#addCard(model.Card)}.
 	 */
 	@Test
 	public void testAddCard() {
@@ -22,7 +22,7 @@ public class HeapTrashTest {
 	}
 
 	/**
-	 * Test method for {@link model.HeapTrash#HeapTrash()}.
+	 * Test method for {@link model.PaketTrash#HeapTrash()}.
 	 */
 	@Test
 	public void testHeapTrash() {
@@ -30,7 +30,7 @@ public class HeapTrashTest {
 	}
 
 	/**
-	 * Test method for {@link model.HeapTrash#getTopCard()}.
+	 * Test method for {@link model.PaketTrash#getTopCard()}.
 	 */
 	@Test
 	public void testGetTopCard() {
@@ -38,7 +38,7 @@ public class HeapTrashTest {
 	}
 
 	/**
-	 * Test method for {@link model.HeapTrash#setTopCard(model.Card)}.
+	 * Test method for {@link model.PaketTrash#setTopCard(model.Card)}.
 	 */
 	@Test
 	public void testSetTopCard() {

@@ -1,8 +1,8 @@
 package model;
 
-public class HeapDeck extends Heap {
+public class PaketDeck extends Paket {
 
-	public HeapDeck() {
+	public PaketDeck() {
 		super(); 
 		System.out.println("Constructor Init HeapDeck");
 	}

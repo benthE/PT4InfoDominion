@@ -14,7 +14,7 @@ import org.junit.Test;
 public class HeapHandTest {
 
 	/**
-	 * Test method for {@link model.HeapHand#addCard(model.Card)}.
+	 * Test method for {@link model.PaketHand#addCard(model.Card)}.
 	 */
 	@Test
 	public void testAddCard() {
@@ -22,7 +22,7 @@ public class HeapHandTest {
 	}
 
 	/**
-	 * Test method for {@link model.HeapHand#HeapHand()}.
+	 * Test method for {@link model.PaketHand#HeapHand()}.
 	 */
 	@Test
 	public void testHeapHand() {

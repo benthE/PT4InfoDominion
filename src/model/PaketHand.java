@@ -1,11 +1,11 @@
 package model;
 
-public class HeapHand extends Heap {
+public class PaketHand extends Paket {
 
 	/**
 	 * Constructor Init
 	 */
-	public HeapHand() {
+	public PaketHand() {
 		super();
 		System.out.println("Constructor Init HeapHand");
 	}

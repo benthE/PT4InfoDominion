@@ -14,7 +14,7 @@ import org.junit.Test;
 public class HeapDeckTest {
 
 	/**
-	 * Test method for {@link model.HeapDeck#addCard(model.Card)}.
+	 * Test method for {@link model.PaketDeck#addCard(model.Card)}.
 	 */
 	@Test
 	public void testAddCard() {
@@ -22,7 +22,7 @@ public class HeapDeckTest {
 	}
 
 	/**
-	 * Test method for {@link model.HeapDeck#HeapDeck()}.
+	 * Test method for {@link model.PaketDeck#HeapDeck()}.
 	 */
 	@Test
 	public void testHeapDeck() {
@@ -30,7 +30,7 @@ public class HeapDeckTest {
 	}
 
 	/**
-	 * Test method for {@link model.HeapDeck#initDeck()}.
+	 * Test method for {@link model.PaketDeck#initDeck()}.
 	 */
 	@Test
 	public void testInitDeck() {
@@ -38,7 +38,7 @@ public class HeapDeckTest {
 	}
 
 	/**
-	 * Test method for {@link model.HeapDeck#toString()}.
+	 * Test method for {@link model.PaketDeck#toString()}.
 	 */
 	@Test
 	public void testToString() {

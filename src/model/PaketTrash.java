@@ -1,13 +1,13 @@
 package model;
 
-public class HeapTrash extends Heap {
+public class PaketTrash extends Paket {
 
 	private Card topCard=null;
 	
 	/**
 	 * Constructor Init
 	 */
-	public HeapTrash() {
+	public PaketTrash() {
 		super();
 	}
 

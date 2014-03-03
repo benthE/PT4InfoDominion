@@ -2,14 +2,14 @@ package model;
 
 import java.util.ArrayList;
 
-public abstract class Heap {
+public abstract class Paket {
 
 	ArrayList<Card> myCards = null;
 	
 	/*
 	 * Constructor Init
 	 */
-	public Heap(){
+	public Paket(){
 		System.out.println("Constructor Init Heap");
 		myCards = new ArrayList<Card>();
 	}
