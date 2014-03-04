@@ -17,7 +17,7 @@ public class boardGame {
 	public void initPlayers(){
 		myPlayers = new ArrayList<Player>();
 		myPlayers.add(new Player(0));
-		myPlayers.get(0).updateCards();
+		myPlayers.get(0).updateHand();
 	}
 	
 	public void initCards(){

@@ -7,33 +7,47 @@ import javax.swing.JPanel;
 import model.Player;
 
 public class DisplayPlayer{
-	JLabel helpNbCard;
-	JLabel handCardLabel[] = new JLabel[20];
-	JPanel handCardPanel[] = new JPanel[20];
+	private JLabel helpNbCard;
+	private JLabel handCardLabel[] = new JLabel[20];
+	private JPanel handCardPanel[] = new JPanel[20];
 	
-	DisplayPlayer(JLayeredPane all, Player p,ImageManager img, Application app)
+	public DisplayPlayer(){
+		helpNbCard = new JLabel();
+	}
+	
+	public DisplayPlayer(JLayeredPane all, Player p,ImageManager img, Application app)
 	{
+		helpNbCard = new JLabel();
+		initDisplayPlayer(all,p,img,app);
+	}
+  
+	
+	public void initDisplayPlayer(JLayeredPane all, Player p,ImageManager img, Application app){
 		String nameTmp;
 		
 		int i;
-		for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
+		if(p.getMyHand().getMyCards().size()>0)
 		{
-			handCardPanel[i] = new JPanel();
-			handCardPanel[i].setBounds((i+1)*150, 500, 100, 200);
-		
-			nameTmp = p.getMyHand().getMyCards().get(i).getName();
-			
-			if( nameTmp == "Domaine")
-				handCardLabel[i] = new JLabel(img.getMyImgs().get("Domaine"));
-			else if( nameTmp == "Cuivre")
+			for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
 			{
-				handCardLabel[i] = new JLabel(img.getMyImgs().get("Cuivre"));
-				app.setJoueurOr(1);
+				handCardPanel[i] = new JPanel();
+				handCardPanel[i].setBounds((i+1)*150, 500, 100, 200);
+			
+				nameTmp = p.getMyHand().getMyCards().get(i).getName();
+				
+				if( nameTmp == "Domaine")
+					handCardLabel[i] = new JLabel(img.getMyImgs().get("Domaine"));
+				else if( nameTmp == "Cuivre")
+				{
+					handCardLabel[i] = new JLabel(img.getMyImgs().get("Cuivre"));
+					app.setJoueurOr(1);
+				}
+			
+				handCardPanel[i].add(handCardLabel[i]);
+				all.add(handCardPanel[i],new Integer(i+8));
 			}
 		
-			handCardPanel[i].add(handCardLabel[i]);
-			all.add(handCardPanel[i],new Integer(i+8));
-		}
+		
 		handCardPanel[i+1] = new JPanel();
 		handCardPanel[i+1].setBounds(10, 250, 100, 200);
 		
@@ -49,5 +63,11 @@ public class DisplayPlayer{
 
 		handCardPanel[i+2].add(helpNbCard);
 		all.add(handCardPanel[i+2],new Integer(i+2+8));	
+		}
+		else
+		{
+			//handCardLabel = new JLabel[20];
+			handCardPanel = null;
+		}
 	}
 }
