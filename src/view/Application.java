@@ -21,85 +21,51 @@ public class Application extends JFrame implements ActionListener{
 			super();
 		}
 		
-		private void debutPartie(JLayeredPane tout, boardGame bG,HashMap<String,ImageIcon> img){
+		private void debutPartie(JLayeredPane all, boardGame bG,ImageManager img){
 	        setSize(new Dimension(1000,700));
-	        JLabel fond = new JLabel(img.get("test"));
-
-	        JPanel board[] = new JPanel[20];
-	        JLabel card[] = new JLabel[20];
 	        
-	        JLabel aideOr = new JLabel();
-	        aideOr.setText("Pièces d'or : " + getJoueurOr());
+	        /**
+	         * Affichage du fond
+	         */
+	        JLabel Background = new JLabel(img.getMyImgs().get("test"));
+	        JPanel myBg = new JPanel();
+	        myBg.setBounds(0, 0, 1000, 700);
+	        myBg.add(Background);
+	        myBg.add(Background);
+	        all.add(myBg,new Integer(0));
+	        
+	        /**
+	         * Affichage Aides (fonctionne pas)
+	         */
+	        //displayBoard(all, bG,img);
+	        //JLabel aideOr = new JLabel();
+	        //aideOr.setText("Pièces d'or : " + getJoueurOr());
 	        
 	        //buttonBuy = new JButton("+");
 			//buttonBuy.addActionListener(this);
 	        
-	        board[0] = new JPanel();
-	        board[0].setBounds(0, 0, 1000, 700);
-	        board[0].add(fond);
-	        board[0].add(fond);
-	        tout.add(board[0],new Integer(0));
 	        
-	        for(int i=1; i<18; i++)
-	        {
-		        card[i-1] = new JLabel(img.get(bG.getMyCards().get(i).getMyCard().getName()));
-	
-		        board[i] = new JPanel();
-		        if (i>14)
-		    		board[i].setBounds(780, 20+(i-14)*50, 100, 200);
-		        else if (i>10)
-		    		board[i].setBounds(130, 20+(i-10)*50, 100, 200);
-		        else if(i>5)
-		        	board[i].setBounds(150+((i-5)*100), 240, 100, 200);
-		        else
-		        	board[i].setBounds(150+(i*100), 20, 100, 200);
-		        board[i].add(card[i-1]);
-		        
-		        tout.add(board[i],new Integer(i));
-	       	}
 		}
-		
+
 		public static void main(String[] args) throws IOException {
-			Application app = new Application();
-			HashMap<String,ImageIcon> myImgs = new HashMap<String,ImageIcon>();
-			
 			/**
-			 * Cartes Trésor
+			 * Initialisation model
 			 */
-			myImgs.put("Cuivre",new ImageIcon(new ImageIcon("img/carteCuivre.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Argent",new ImageIcon(new ImageIcon("img/carteArgent.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Or",new ImageIcon(new ImageIcon("img/carteOr.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			
-			/**
-			 * Cartes Victoire
-			 */
-			myImgs.put("Domaine",new ImageIcon(new ImageIcon("img/carteDomaine.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Duche",new ImageIcon(new ImageIcon("img/carteDuche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Province",new ImageIcon(new ImageIcon("img/carteProvince.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Malediction",new ImageIcon(new ImageIcon("img/carteMalediction.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			
-			/**
-			 * Cartes Action
-			 */
-			myImgs.put("Bucheron",new ImageIcon(new ImageIcon("img/carteBucheron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Cave",new ImageIcon(new ImageIcon("img/carteCave.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Mine",new ImageIcon(new ImageIcon("img/carteMine.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Douves",new ImageIcon(new ImageIcon("img/carteDouves.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Milice",new ImageIcon(new ImageIcon("img/carteMilice.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Marche",new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Forgeron",new ImageIcon(new ImageIcon("img/carteForgeron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Atelier",new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("Dos",new ImageIcon(new ImageIcon("img/dos.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-			myImgs.put("test",new ImageIcon("img/test.jpg"));
-			
-			JLayeredPane all = new JLayeredPane();
-			
 			boardGame bG = new boardGame();
 			bG.initPlayers();
 			bG.initCards();
 			
-			DisplayPlayer dp = new DisplayPlayer(all,bG.getMyPlayers().get(0),myImgs,app);
-			app.debutPartie(all,bG,myImgs);
+			/**
+			 * Initialisation vue
+			 */
+			ImageManager iM = new ImageManager();
+			Application app = new Application();
+			JLayeredPane all = new JLayeredPane();
+						
+			
+			app.debutPartie(all,bG,iM);
+			DisplayBoard db = new DisplayBoard(all,bG,iM);
+			DisplayPlayer dp = new DisplayPlayer(all,bG.getMyPlayers().get(0),iM,app);
 			
 			app.add(all);
 	        

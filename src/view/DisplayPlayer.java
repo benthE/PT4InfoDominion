@@ -1,8 +1,5 @@
 package view;
 
-import java.util.HashMap;
-
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -14,7 +11,7 @@ public class DisplayPlayer{
 	JLabel handCardLabel[] = new JLabel[20];
 	JPanel handCardPanel[] = new JPanel[20];
 	
-	DisplayPlayer(JLayeredPane all, Player p,HashMap<String,ImageIcon> img, Application app)
+	DisplayPlayer(JLayeredPane all, Player p,ImageManager img, Application app)
 	{
 		String nameTmp;
 		
@@ -27,10 +24,10 @@ public class DisplayPlayer{
 			nameTmp = p.getMyHand().getMyCards().get(i).getName();
 			
 			if( nameTmp == "Domaine")
-				handCardLabel[i] = new JLabel(img.get("Domaine"));
+				handCardLabel[i] = new JLabel(img.getMyImgs().get("Domaine"));
 			else if( nameTmp == "Cuivre")
 			{
-				handCardLabel[i] = new JLabel(img.get("Cuivre"));
+				handCardLabel[i] = new JLabel(img.getMyImgs().get("Cuivre"));
 				app.setJoueurOr(1);
 			}
 		
@@ -40,7 +37,7 @@ public class DisplayPlayer{
 		handCardPanel[i+1] = new JPanel();
 		handCardPanel[i+1].setBounds(10, 250, 100, 200);
 		
-		handCardLabel[i+1] = new JLabel(img.get("Dos"));
+		handCardLabel[i+1] = new JLabel(img.getMyImgs().get("Dos"));
 		handCardPanel[i+1].add(handCardLabel[i+1]);
 		all.add(handCardPanel[i+1],new Integer(i+1+8));
 		
