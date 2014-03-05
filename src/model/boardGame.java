@@ -50,6 +50,8 @@ public class boardGame {
 		myCards.put(16,new PaketBoard(new CardTreasure(TypeTreasure.GOLD),10));
 	}
 	
+
+	
 	public static void main(String[] args) {
 		boardGame bG = new boardGame();
 		bG.initPlayers();

@@ -5,14 +5,13 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
 import java.util.HashMap;
-
 import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class Application extends JFrame implements ActionListener{
 
 		JPanel myPanel;
-		JButton myButton0;
+		private JButton myButton0;
 		JButton buttonBuy;
 		private ImageManager iM = new ImageManager();
 		private JLayeredPane all = new JLayeredPane();
@@ -36,7 +35,7 @@ public class Application extends JFrame implements ActionListener{
 	        myBg.add(Background);
 	        myBg.add(Background);
 	        all.add(myBg,new Integer(0));
-	        
+    
 	        
 	        
 	        JPanel myButton = new JPanel();
@@ -45,18 +44,7 @@ public class Application extends JFrame implements ActionListener{
 	        myButton.add(myButton0);
 	        myButton.setBounds(770, 450, 50, 30);
 	        
-	        all.add(myButton,new Integer(20));
-	        
-	        /**
-	         * Affichage Aides (fonctionne pas)
-	         */
-	        //displayBoard(all, bG,img);
-	        //JLabel aideOr = new JLabel();
-	        //aideOr.setText("Pièces d'or : " + getJoueurOr());
-	        
-	        //buttonBuy = new JButton("+");
-			//buttonBuy.addActionListener(this);
-	        
+	        all.add(myButton,new Integer(20)); 
 	        
 		}
 
@@ -73,7 +61,6 @@ public class Application extends JFrame implements ActionListener{
 			
 			Application app = new Application();
 			
-						
 			app.getbG().initPlayers();
 			app.getbG().initCards();
 			
@@ -84,9 +71,7 @@ public class Application extends JFrame implements ActionListener{
 			
 			app.add(app.getAll());
 	        
-			app.show(true);
-
-			
+			app.show(true);	
 		}
 		/**
 		 * @return the myPanel
@@ -114,13 +99,19 @@ public class Application extends JFrame implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			Object source = e.getSource();
 			
-			if(source == myButton0){
+			if(source == myButton0)
+			{
 				System.out.println("Vous avez cliqué ici.");
 				System.out.println(bG.getMyPlayers().get(0).getMyHand().getMyCards().size());
 				bG.getMyPlayers().get(0).discardHand();
 				System.out.println(bG.getMyPlayers().get(0).getMyHand().getMyCards().size());
 				
-				//dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				
+				bG.getMyPlayers().get(0).updateHand();
+				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				
+				
 			} 
 		}
 
@@ -179,8 +170,5 @@ public class Application extends JFrame implements ActionListener{
 		public void setiM(ImageManager iM) {
 			this.iM = iM;
 		}
-		
-		
-
 	}
 

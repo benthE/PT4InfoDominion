@@ -31,17 +31,16 @@ public class DisplayPlayer{
 			for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
 			{
 				handCardPanel[i] = new JPanel();
+				handCardPanel[i].setOpaque(false);
 				handCardPanel[i].setBounds((i+1)*150, 500, 100, 200);
 			
 				nameTmp = p.getMyHand().getMyCards().get(i).getName();
+								
+				handCardLabel[i] = new JLabel(img.getMyImgs().get(nameTmp));
 				
-				if( nameTmp == "Domaine")
-					handCardLabel[i] = new JLabel(img.getMyImgs().get("Domaine"));
-				else if( nameTmp == "Cuivre")
-				{
-					handCardLabel[i] = new JLabel(img.getMyImgs().get("Cuivre"));
+				if( nameTmp == "Cuivre")
 					app.setJoueurOr(1);
-				}
+				
 			
 				handCardPanel[i].add(handCardLabel[i]);
 				all.add(handCardPanel[i],new Integer(i+8));
@@ -66,8 +65,11 @@ public class DisplayPlayer{
 		}
 		else
 		{
-			//handCardLabel = new JLabel[20];
-			handCardPanel = null;
+			for(int j=0; j<5; j++)
+			{
+				handCardPanel[j].removeAll();
+				handCardPanel[j].repaint();	
+			}
 		}
 	}
 }
