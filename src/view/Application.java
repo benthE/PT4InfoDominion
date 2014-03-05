@@ -34,13 +34,6 @@ public class Application extends JFrame implements ActionListener{
 	        myBg.add(Background);
 	        all.add(myBg,new Integer(0));
 	        
-	        /**
-	         * Affichage Aides (fonctionne pas)
-	         */
-	        //displayBoard(all, bG,img);
-	        //JLabel aideOr = new JLabel();
-	        //aideOr.setText("Pièces d'or : " + getJoueurOr());
-	        
 	        //buttonBuy = new JButton("+");
 			//buttonBuy.addActionListener(this);
 	        

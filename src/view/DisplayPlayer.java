@@ -10,6 +10,8 @@ public class DisplayPlayer{
 	JLabel helpNbCard;
 	JLabel handCardLabel[] = new JLabel[20];
 	JPanel handCardPanel[] = new JPanel[20];
+	JLabel helpGold;
+	JPanel helpGoldPanel;
 	
 	DisplayPlayer(JLayeredPane all, Player p,ImageManager img, Application app)
 	{
@@ -48,6 +50,13 @@ public class DisplayPlayer{
 		helpNbCard.setText("" + p.getMyDeck().getMyCards().size());
 
 		handCardPanel[i+2].add(helpNbCard);
-		all.add(handCardPanel[i+2],new Integer(i+2+8));	
+		all.add(handCardPanel[i+2],new Integer(i+2+8));
+		
+		helpGold = new JLabel();
+		helpGold.setText("Pièces d'or : " + app.getJoueurOr());
+		helpGoldPanel = new JPanel();
+		helpGoldPanel.add(helpGold);
+		helpGoldPanel.setBounds(800, 400, 100, 30);
+		all.add(helpGoldPanel, new Integer(i+3+8));
 	}
 }
