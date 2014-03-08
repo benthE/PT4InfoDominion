@@ -22,7 +22,7 @@ public class CardAction extends Card{
 		super(n, p);
 		System.out.println("Constructor Param CardAction");
 		myTypeAction = ta;
-		myPoints = new Points(pa,pp,pm,pc);
+		myPoints = new Points(pa,pp,pm,pc, false);
 		
 	}
 	

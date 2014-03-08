@@ -3,6 +3,7 @@ package model;
 public class Card {
 		private String name;
 		private int price;
+    private TypeAction myTypeAction;
 		
 		/** 
 		 * Constructor Init 
@@ -61,4 +62,8 @@ public class Card {
 		public void setPrice(int price) {
 			this.price = price;
 		}
+
+    public TypeAction getMyTypeAction() {
+        return myTypeAction;
+    }
 }

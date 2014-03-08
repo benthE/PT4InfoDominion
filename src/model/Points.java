@@ -6,7 +6,8 @@ public class Points {
 	private int pPurchase;
 	private int pMoney;
 	private int pCard;
-	
+    private  boolean endBuy;
+
 	/**
 	 * Constructor Init
 	 */
@@ -14,19 +15,21 @@ public class Points {
 		System.out.println("Constructor Init Points");
 		pAction = 0;
 		pPurchase = 0;
-		pMoney = 0;
+		pMoney = 9; // mise à 1 pour essai d'une IA
 		pCard = 0;
+        endBuy= false;
 	}
 	
 	/**
 	 * Constructor Param
 	 */
-	public Points(int pa, int pp, int pm, int pc) {
+	public Points(int pa, int pp, int pm, int pc, boolean endB) {
 		System.out.println("Constructor Param Points");
 		pAction = pa;
 		pPurchase = pp;
 		pMoney = pm;
 		pCard = pc;
+        endBuy = endB;
 	}
 	
 	/**
@@ -37,6 +40,7 @@ public class Points {
 		pAction = pts.getPAction();
 		pPurchase = pts.getPPurchase();
 		pMoney = pts.getPMoney();
+        endBuy = pts.isEndBuy();
 	}
 	
 	/**
@@ -95,4 +99,11 @@ public class Points {
 		this.pCard = pCard;
 	}
 
+    public boolean isEndBuy() {
+        return endBuy;
+    }
+
+    public void setEndBuy(boolean endBuy) {
+        this.endBuy = endBuy;
+    }
 }

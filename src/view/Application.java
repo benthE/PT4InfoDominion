@@ -39,7 +39,7 @@ public class Application extends JFrame implements ActionListener{
 	         */
 	        //displayBoard(all, bG,img);
 	        //JLabel aideOr = new JLabel();
-	        //aideOr.setText("Pièces d'or : " + getJoueurOr());
+	        //aideOr.setText("Piï¿½ces d'or : " + getJoueurOr());
 	        
 	        //buttonBuy = new JButton("+");
 			//buttonBuy.addActionListener(this);
@@ -68,7 +68,9 @@ public class Application extends JFrame implements ActionListener{
 			DisplayPlayer dp = new DisplayPlayer(all,bG.getMyPlayers().get(0),iM,app);
 			
 			app.add(all);
-	        
+
+            IAEngine Ia = new IAEngine(bG);
+            Ia.buyCardEngine();
 			app.show(true);
 		}
 
@@ -99,7 +101,7 @@ public class Application extends JFrame implements ActionListener{
 			Object source = e.getSource();
 			
 			if(source == myButton0){
-				System.out.println("Vous avez cliqué ici.");
+				System.out.println("Vous avez cliquï¿½ ici.");
 			} 
 		}
 		

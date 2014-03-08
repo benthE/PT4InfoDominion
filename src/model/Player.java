@@ -2,11 +2,24 @@ package model;
 
 public class Player {
 
-	private final int num;
+	private int num;
 	private PaketDeck myDeck=null;
 	private PaketHand myHand=null;
 	private PaketTrash myTrash=null;
 	private Points myPoints=null;
+    private int myBuy=0;
+    private PaketDiscard myDiscardC = null;
+
+    public Player(){
+        myDeck = new PaketDeck();
+        myDeck.initDeck();
+        myHand = new PaketHand();
+        myTrash = new PaketTrash();
+        myPoints = new Points();
+        myDiscardC = new PaketDiscard();
+        this.setMyBuy(1);
+
+    }
 	
 	/**
 	 * Constructor Player
@@ -88,6 +101,25 @@ public class Player {
 	public int getNum() {
 		return num;
 	}
+    public int getMyBuy() {
+        return myBuy;
+    }
+
+    public void setMyBuy(int myBuy) {
+        this.myBuy = myBuy;
+    }
+    public PaketDiscard getMyDiscardC() {
+        return myDiscardC;
+    }
+
+    public void setMyDiscardC(PaketDiscard myDiscardC) {
+        this.myDiscardC = myDiscardC;
+    }
+
+    public void addDiscardCard( Card c){
+
+        this.myDiscardC.addCard(c);
+    }
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
