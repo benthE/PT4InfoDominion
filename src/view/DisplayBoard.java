@@ -30,6 +30,7 @@ public class DisplayBoard {
         for(int i=0; i<nbCard; i++)
         {
         	board[i] = new JPanel();
+        	board[i].setOpaque(false);
 	        if (i>nbCard-4)//Carte trésor
 	    		board[i].setBounds(780, (i-13)*50, 100, 200);
 	        else if (i>nbCard-8)//Carte Victoire

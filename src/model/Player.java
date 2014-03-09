@@ -1,11 +1,14 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Player {
 
 	private final int num;
 	private PaketDeck myDeck=null;
 	private PaketHand myHand=null;
-	private PaketTrash myTrash=null;
+	private PaketDiscard myDiscard=null;
+	//private PaketTrash myTrash=null;
 	private Points myPoints=null;
 	
 	/**
@@ -21,17 +24,37 @@ public class Player {
 		myDeck = new PaketDeck();
 		myDeck.initDeck();
 		myHand = new PaketHand();
-		myTrash = new PaketTrash();
+		myDiscard = new PaketDiscard();
+		//myTrash = new PaketTrash();
 	}
 	
-	public void updateCards(){
+	public void updateDeck(){
+		myDeck.getMyCards().addAll(myDiscard.getMyCards());
+		myDiscard.setMyCards( new ArrayList<Card>());
+		myDiscard.setTopCard(null);
+	}
+	
+	public void updateHand(){
 		int nb = 0;
-			while(myHand.getMyCards().size() < 5)
+		while(myHand.getMyCards().size() < 5)
 			{
-				nb = (int) (Math.random() * myDeck.getMyCards().size());
-				myHand.addCard(myDeck.getMyCards().get(nb));
-				myDeck.getMyCards().remove(nb);
-			}		
+				if(myDeck.getMyCards().size()==0)
+					updateDeck();
+				else
+				{
+					nb = (int) (Math.random() * myDeck.getMyCards().size());
+					myHand.addCard(myDeck.getMyCards().get(nb));
+					myDeck.getMyCards().remove(nb);
+				}
+			}
+	}
+	
+	public void discardHand(){
+		if(myHand.getMyCards().size() > 0)
+		{
+			myDeck.getMyCards().addAll(myHand.getMyCards());
+			myHand.setMyCards( new ArrayList<Card>());
+		}
 	}
 	
 	/**
@@ -60,16 +83,16 @@ public class Player {
 	}
 	/**
 	 * @return the myTrash
-	 */
+	 *
 	public PaketTrash getMyTrash() {
 		return myTrash;
 	}
 	/**
 	 * @param myTrash the myTrash to set
-	 */
+	 *
 	public void setMyTrash(PaketTrash myTrash) {
 		this.myTrash = myTrash;
-	}
+	}*/
 	/**
 	 * @return the myPoints
 	 */
@@ -95,7 +118,7 @@ public class Player {
 	@Override
 	public String toString() {
 		return "Player [num=" + num + ", myDeck=" + myDeck.toString() + ", myHand="
-				+ myHand + ", myTrash=" + myTrash + ", myPoints=" + myPoints
+				+ myHand + ", myPoints=" + myPoints
 				+ "]";
 	}
 }
