@@ -1,9 +1,11 @@
 package view;
 
 import model.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -84,11 +86,15 @@ public class Application extends JFrame implements ActionListener{
 			
 			if(source == myButton0)
 			{
+				int resetOr = 0 - getJoueurOr();
+				setJoueurOr(resetOr);
+				
 				System.out.println("Tour suivant");
 				bG.getMyPlayers().get(0).discardHand();
-				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);				
 				bG.getMyPlayers().get(0).updateHand();
 				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				System.out.println("Or = " + getJoueurOr());
 			}		
 		}
 

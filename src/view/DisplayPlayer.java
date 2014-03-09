@@ -76,6 +76,8 @@ public class DisplayPlayer{
 		helpGoldPanel.add(helpGold);
 		helpGoldPanel.setBounds(800, 400, 100, 30);
 		all.add(helpGoldPanel, new Integer(i+3+8));
+		all.revalidate();
+		all.add(helpGoldPanel, new Integer(i+3+8));
 		}
 		else
 		{
@@ -87,4 +89,6 @@ public class DisplayPlayer{
 		}
 
 	}
+	
+	
 }
