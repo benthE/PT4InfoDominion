@@ -4,13 +4,11 @@ import model.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.IOException;
-import java.util.HashMap;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
 public class Application extends JFrame implements ActionListener{
 
-		JPanel myPanel;
 		private JButton myButton0;
 		JButton buttonBuy;
 		private ImageManager iM = new ImageManager();
@@ -73,19 +71,6 @@ public class Application extends JFrame implements ActionListener{
 	        
 			app.show(true);	
 		}
-		/**
-		 * @return the myPanel
-		 */
-		public JPanel getMyPanel() {
-			return myPanel;
-		}
-
-		/**
-		 * @param myPanel the myPanel to set
-		 */
-		public void setMyPanel(JPanel myPanel) {
-			this.myPanel = myPanel;
-		}
 		
 		public int getJoueurOr(){
 			return aideJoueurOr;
@@ -110,9 +95,9 @@ public class Application extends JFrame implements ActionListener{
 				
 				bG.getMyPlayers().get(0).updateHand();
 				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
-				
-				
-			} 
+
+			}
+			
 		}
 
 		/**

@@ -49,6 +49,7 @@ public class DisplayPlayer{
 		
 		handCardPanel[i+1] = new JPanel();
 		handCardPanel[i+1].setBounds(10, 250, 100, 200);
+		handCardPanel[i+1].setOpaque(false);
 		
 		handCardLabel[i+1] = new JLabel(img.getMyImgs().get("Dos"));
 		handCardPanel[i+1].add(handCardLabel[i+1]);

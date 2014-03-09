@@ -40,6 +40,8 @@ public class ImageManager {
 		myImgs.put("Marche",new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Forgeron",new ImageIcon(new ImageIcon("img/carteForgeron.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Atelier",new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+		myImgs.put("Renovation",new ImageIcon(new ImageIcon("img/carteRenovation.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+		myImgs.put("Village",new ImageIcon(new ImageIcon("img/carteVillage.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Dos",new ImageIcon(new ImageIcon("img/dos.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		/**
 		 * Images Test

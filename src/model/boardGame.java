@@ -35,7 +35,7 @@ public class boardGame {
 	    myCards.put(5,new PaketBoard(new CardAction("Marche", 5, TypeAction.BASE, 1, 1, 1, 1),10));
 	    myCards.put(6,new PaketBoard(new CardAction("Milice", 4, TypeAction.ATTAQUE, 0, 0, 2, 0),10));
 	    myCards.put(7,new PaketBoard(new CardAction("Mine", 5, TypeAction.BASE, 0, 0, 0, 0),10));
-	    myCards.put(8,new PaketBoard(new CardAction("Rénovation", 4, TypeAction.BASE, 0, 0, 0, 0),10));
+	    myCards.put(8,new PaketBoard(new CardAction("Renovation", 4, TypeAction.BASE, 0, 0, 0, 0),10));
 	    myCards.put(9,new PaketBoard(new CardAction("Village", 3, TypeAction.BASE, 2, 0, 0, 2),10));
 	    
 	    /**
@@ -44,7 +44,7 @@ public class boardGame {
 		myCards.put(10,new PaketBoard(new CardVictory(),10));
 		myCards.put(11,new PaketBoard(new CardVictory("Duche",5,3,false),10));
 		myCards.put(12,new PaketBoard(new CardVictory("Province",8,6,false),12));
-		myCards.put(13,new PaketBoard(new CardVictory("Malédiction",0,-1,false),10));
+		myCards.put(13,new PaketBoard(new CardVictory("Malediction",0,-1,false),10));
 		myCards.put(14,new PaketBoard(new CardTreasure(TypeTreasure.COPPER),10));
 		myCards.put(15,new PaketBoard(new CardTreasure(TypeTreasure.SILVER),10));
 		myCards.put(16,new PaketBoard(new CardTreasure(TypeTreasure.GOLD),10));
