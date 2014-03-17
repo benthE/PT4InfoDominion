@@ -18,14 +18,16 @@ public class Application extends JFrame implements ActionListener{
 		private boardGame bG = new boardGame();
 		private DisplayPlayer dp = new DisplayPlayer();
 		private int aideJoueurOr =0;
-		
+        public static JPanel bigCardPanel;
+        public static JLabel bigCard;
+
 		public Application() {
 			super();
 		}
-		
+
 		private void debutPartie(JLayeredPane all, boardGame bG,ImageManager img){
 	        setSize(new Dimension(1000,700));
-	        
+
 	        /**
 	         * Affichage du fond
 	         */
@@ -37,14 +39,14 @@ public class Application extends JFrame implements ActionListener{
 	        all.add(myBg,new Integer(0));
 
 	        JPanel myButton = new JPanel();
-	        myButton0 = new JButton("DONE");
+	        myButton0 = new JButton("Tour Suivant");
 	        myButton0.addActionListener(this);
 	        myButton.add(myButton0);
-	        myButton.setBounds(770, 450, 50, 30);
+	        myButton.setBounds(800, 450, 100, 30);
 
-	        
-	        all.add(myButton,new Integer(20)); 
-	        
+
+	        all.add(myButton,new Integer(20));
+
 		}
 
 		public static void main(String[] args) throws IOException {
@@ -52,50 +54,57 @@ public class Application extends JFrame implements ActionListener{
 			 * Initialisation model
 			 */
 			//boardGame bG = new boardGame();
-			
-			
+
+
 			/**
 			 * Initialisation vue
 			 */
-			
+            bigCardPanel = new JPanel();
+            bigCard = new JLabel();
+            bigCardPanel.setBounds(350,30,300,700);
+            bigCardPanel.setOpaque(false);
+            bigCardPanel.add(bigCard);
 			Application app = new Application();
-			
+
 			app.getbG().initPlayers();
 			app.getbG().initCards();
-			
+            app.add(bigCardPanel);
+
+            bigCardPanel.setVisible(false);
+
 			app.debutPartie(app.getAll(),app.getbG(),app.getiM());
 			DisplayBoard db = new DisplayBoard(app.getAll(),app.getbG(),app.getiM());
-			
+
 			app.getDp().initDisplayPlayer(app.getAll(),app.getbG().getMyPlayers().get(0),app.getiM(),app);
-			
+
 			app.add(app.getAll());
-	        
-			app.show(true);	
+
+			app.show(true);
 		}
-		
+
 		public int getJoueurOr(){
 			return aideJoueurOr;
 		}
-		
+
 		public void setJoueurOr(int a){
 			aideJoueurOr+=a;
 		}
-		
+
 		public void actionPerformed(ActionEvent e) {
 			Object source = e.getSource();
-			
+
 			if(source == myButton0)
 			{
 				int resetOr = 0 - getJoueurOr();
 				setJoueurOr(resetOr);
-				
+
 				System.out.println("Tour suivant");
 				bG.getMyPlayers().get(0).discardHand();
-				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);				
+				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
 				bG.getMyPlayers().get(0).updateHand();
 				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
 				System.out.println("Or = " + getJoueurOr());
-			}		
+			}
 		}
 
 		/**
@@ -153,5 +162,21 @@ public class Application extends JFrame implements ActionListener{
 		public void setiM(ImageManager iM) {
 			this.iM = iM;
 		}
+
+    public static JPanel getBigCardPanel() {
+        return bigCardPanel;
+    }
+
+    public static void setBigCardPanel(JPanel bigCardPanel) {
+        Application.bigCardPanel = bigCardPanel;
+    }
+
+    public JLabel getBigCard() {
+        return bigCard;
+    }
+
+    public void setBigCard(JLabel bigCard) {
+        this.bigCard = bigCard;
+    }
 	}
 

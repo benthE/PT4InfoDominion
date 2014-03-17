@@ -1,0 +1,86 @@
+package view;
+
+import model.boardGame;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class DisplayBoard {
+	final static Integer nbCard = 17; 
+	JPanel board[];
+    JLabel card[];
+    JPanel l = new JPanel();
+    
+	public DisplayBoard() {
+		InitDisplayBoard();
+	}
+
+	public DisplayBoard(JLayeredPane all, boardGame bG, ImageManager img){
+		InitDisplayBoard();
+		UpdateBoard(all, bG, img);
+	}
+	
+	public void InitDisplayBoard(){
+		board = new JPanel[nbCard];
+        card = new JLabel[nbCard];
+
+        
+        /**
+         * Initialisation position carte plateau
+         */
+        for(int i=0; i<nbCard; i++)
+        {
+        	board[i] = new JPanel();
+	        if (i>nbCard-4)//Carte tr�sor
+	    		board[i].setBounds(780, (i-13)*50, 100, 200);
+	        else if (i>nbCard-8)//Carte Victoire
+	    		board[i].setBounds(130, (i-9)*50, 100, 200);
+	        else if(i>nbCard-13)//2eme ligne de carte action
+	        	board[i].setBounds(150+((i-4)*100), 240, 100, 200);
+	        else
+	        	board[i].setBounds(150+((i+1)*100), 20, 100, 200);
+        }
+	}
+	
+	public void UpdateBoard(JLayeredPane all, boardGame bG, ImageManager img) {
+		/**
+		 * Affichage plateau
+		 */
+
+		for(int i=0; i<nbCard; i++)
+        {
+	        card[i] = new JLabel(img.getMyImgs().get(bG.getMyCards().get(i).getMyCard().getName()));
+//            System.out.println("nom image = " + img.getMyImgs().get(bG.getMyCards().get(i).getMyCard().getName()));
+	        board[i].add(card[i]);
+	        all.add(board[i],new Integer(i+1));//i "+1" car le fond est en 0.
+       	}
+
+        /*On ajoute les listeners aux cartes contenues dans card[]*/
+        for (int i=0; i<card.length; i++){
+            card[i].addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    System.out.println(e.getSource().toString());
+                    JLabel l = (JLabel) e.getSource();
+
+                    Application app = new Application();
+                    app.getBigCardPanel().setVisible(true);
+                    ImageIcon nn = (ImageIcon) l.getIcon();
+                    ImageIcon ll = new ImageIcon(nn.getImage().getScaledInstance(200,300,Image.SCALE_DEFAULT));
+                    app.getBigCard().setIcon(ll);
+                }
+            });
+            card[i].addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    System.out.println(e.getSource().toString());
+                    JLabel l = (JLabel) e.getSource();
+                    Application app = new Application();
+                    app.getBigCardPanel().setVisible(false);
+                }
+            });
+        }
+	}
+}

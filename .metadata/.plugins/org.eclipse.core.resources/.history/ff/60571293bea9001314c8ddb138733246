@@ -1,0 +1,167 @@
+package view;
+
+import model.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.IOException;
+import java.util.HashMap;
+
+import javax.swing.*;
+
+@SuppressWarnings("serial")
+public class Application extends JFrame implements ActionListener{
+
+		public JPanel myPanel;
+        private static boardGame bG = null;
+    private static ImageManager iM = null;
+    JButton myButton0;
+
+    public static JPanel bigCardPanel;
+    public static JLabel bigCard;
+		JButton buttonBuy;
+        public static JButton button1 = new JButton();
+
+		private int aideJoueurOr =0;
+		
+		public Application() {
+			super();
+		}
+		
+		private void debutPartie(JLayeredPane all, boardGame bG,ImageManager img){
+	        setSize(new Dimension(1000,700));
+	        
+	        /**
+	         * Affichage du fond
+	         */
+	        JLabel Background = new JLabel(img.getMyImgs().get("test"));
+	        JPanel myBg = new JPanel();
+	        myBg.setBounds(0, 0, 1000, 700);
+	        myBg.add(Background);
+	        myBg.add(Background);
+	        all.add(myBg,new Integer(0));
+	        
+	        /**
+	         * Affichage Aides (fonctionne pas)
+	         */
+	        //displayBoard(all, bG,img);
+	        //JLabel aideOr = new JLabel();
+	        //aideOr.setText("Pi�ces d'or : " + getJoueurOr());
+	        
+	        //buttonBuy = new JButton("+");
+			//buttonBuy.addActionListener(this);
+	        
+	        
+		}
+
+		public static void main(String[] args) throws IOException {
+			/**
+			 * Initialisation model
+			 */
+			bG = new boardGame();
+			bG.initPlayers();
+			bG.initCards();
+			/**
+			 * Initialisation vue
+			 */
+            bigCardPanel = new JPanel();
+            bigCard = new JLabel();
+			iM = new ImageManager();
+			Application app = new Application();
+			JLayeredPane all = new JLayeredPane();
+            bigCardPanel.setBounds(150,150,300,600);
+            bigCardPanel.setOpaque(false);
+            bigCardPanel.add(bigCard);
+
+
+						
+			
+			app.debutPartie(all, bG, iM);
+			DisplayBoard db = new DisplayBoard(all,bG,iM);
+			DisplayPlayer dp = new DisplayPlayer(all,bG.getMyPlayers().get(0),iM,app);
+//            all.setContentPane();
+//            all.add(bigCardPanel);
+            app.add(bigCardPanel);
+            app.add(all);
+            bigCardPanel.setVisible(false);
+            app.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+                    System.out.println("x = "+ e.getX() +"," + "y =" +e.getY());
+                    System.out.println("x = "+ e.getXOnScreen() +"," + "y =" +e.getYOnScreen());
+                }
+            });
+
+
+
+            IAEngine Ia = new IAEngine(bG);
+            Ia.buyCardEngine();
+			app.show(true);
+		}
+
+		/**
+		 * @return the myPanel
+		 */
+		public JPanel getMyPanel() {
+			return myPanel;
+		}
+
+		/**
+		 * @param myPanel the myPanel to set
+		 */
+		public void setMyPanel(JPanel myPanel) {
+			this.myPanel = myPanel;
+		}
+		
+		public int getJoueurOr(){
+			return aideJoueurOr;
+		}
+		
+		public void setJoueurOr(int a){
+			aideJoueurOr+=a;
+		}
+    public static boardGame getbG() {
+        return bG;
+    }
+
+    public static void setbG(boardGame bG) {
+        Application.bG = bG;
+    }
+
+    public static ImageManager getiM() {
+        return iM;
+    }
+
+    public static void setiM(ImageManager iM) {
+        Application.iM = iM;
+    }
+
+    public static JPanel getBigCardPanel() {
+        return bigCardPanel;
+    }
+
+    public static void setBigCardPanel(JPanel bigCardPanel) {
+        Application.bigCardPanel = bigCardPanel;
+    }
+
+    public JLabel getBigCard() {
+        return bigCard;
+    }
+
+    public void setBigCard(JLabel bigCard) {
+        this.bigCard = bigCard;
+    }
+		
+		//***************** INUTILE ******************
+		public void actionPerformed(ActionEvent e) {
+			Object source = e.getSource();
+			
+			if(source == myButton0){
+				System.out.println("Vous avez cliqu� ici.");
+			} 
+		}
+		
+		
+
+	}
+

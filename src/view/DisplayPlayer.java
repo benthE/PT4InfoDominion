@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 
 import model.Player;
 
+import java.awt.*;
+
 public class DisplayPlayer{
 
 
@@ -68,10 +70,14 @@ public class DisplayPlayer{
 		helpNbCard.setText("" + p.getMyDeck().getMyCards().size());
 
 		handCardPanel[i+2].add(helpNbCard);
+        handCardPanel[i+2].setOpaque(false);
 		all.add(handCardPanel[i+2],new Integer(i+2+8));
-		
-		helpGold = new JLabel();
-		helpGold.setText("Pièces d'or : " + app.getJoueurOr());
+        handCardPanel[i+2].revalidate();
+        all.add(handCardPanel[i+2],new Integer(i+2+8));
+
+
+            helpGold = new JLabel();
+		helpGold.setText("PiÃ¨ces d'or : " + app.getJoueurOr());
 		helpGoldPanel = new JPanel();
 		helpGoldPanel.add(helpGold);
 		helpGoldPanel.setBounds(800, 400, 100, 30);

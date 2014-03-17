@@ -1,18 +1,15 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Rectangle;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import model.boardGame;
 
-import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import model.boardGame;
 
-public class DisplayBoard implements MouseListener{
+public class DisplayBoard{
 	final static Integer nbCard = 17; 
 	JPanel board[];
     JLabel card[];
@@ -37,9 +34,8 @@ public class DisplayBoard implements MouseListener{
         for(int i=0; i<nbCard; i++)
         {
         	board[i] = new JPanel();
-        	board[i].addMouseListener(this);
         	board[i].setOpaque(false);
-	        if (i>nbCard-4)//Carte trésor
+	        if (i>nbCard-4)//Carte trï¿½sor
 	    		board[i].setBounds(780, (i-13)*50, 100, 200);
 	        else if (i>nbCard-8)//Carte Victoire
 	    		board[i].setBounds(130, (i-9)*50, 100, 200);
@@ -50,58 +46,45 @@ public class DisplayBoard implements MouseListener{
         }
 	}
 	
-	public void UpdateBoard(JLayeredPane all, boardGame bG, ImageManager img) {
+	public void UpdateBoard(JLayeredPane all, boardGame bG, final ImageManager img) {
 		/**
 		 * Affichage plateau
 		 */
-		for(int i=0; i<nbCard; i++)
+
+        for(int i=0; i<nbCard; i++)
         {
-	        card[i] = new JLabel(img.getMyImgs().get(bG.getMyCards().get(i).getMyCard().getName()));
-	        board[i].add(card[i]);
-	        all.add(board[i],new Integer(i+1));//i "+1" car le fond est en 0.
-       	}
-	}
+            card[i] = new JLabel(img.getMyImgs().get(bG.getMyCards().get(i).getMyCard().getName()));
+            card[i].setName(bG.getMyCards().get(i).getMyCard().getName());
+            board[i].add(card[i]);
+            all.add(board[i],new Integer(i+1));//i "+1" car le fond est en 0.
+        }
+		/*On ajoute les listeners aux cartes contenues dans card[]*/
+        for (int i=0; i<card.length; i++){
+            card[i].addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    System.out.println(e.getSource().toString());
+                    JLabel l = (JLabel) e.getSource();
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		click++;
-		JPanel source = new JPanel(new BorderLayout());
-		source=(JPanel)e.getSource();
-		//System.out.println(source.getComponents());
-		
-		if(click%2==0)
-			source.setSize(400,800);
-		
-		else
-			source.setSize(100,200);
-		
-		source.revalidate();
-		source.repaint();
-	}
+                    Application app = new Application();
+                    app.getBigCardPanel().setVisible(true);
+                    //ImageIcon nn = (ImageIcon) l.getIcon();
+//                    l.setIcon(img.getMyImgs().get(l.getName()+"BIG"));
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		//System.out.println("Survol");
-		
-	}
 
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+                    //ImageIcon ll = new ImageIcon(nn.getImage().getScaledInstance(300,500,Image.SCALE_DEFAULT));
+                    app.getBigCard().setIcon(img.getMyImgs().get(l.getName()+"BIG"));
+                }
+            });
+            card[i].addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    System.out.println(e.getSource().toString());
+                    JLabel l = (JLabel) e.getSource();
+                    Application app = new Application();
+                    app.getBigCardPanel().setVisible(false);
+                }
+            });
+        }
+    }
 }

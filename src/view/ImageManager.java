@@ -15,12 +15,14 @@ public class ImageManager {
 	
 	public void initIM() {
 		/**
-		 * Cartes Trésor
+		 * Cartes Trï¿½sor
 		 */
 		myImgs.put("Cuivre",new ImageIcon(new ImageIcon("img/carteCuivre.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Argent",new ImageIcon(new ImageIcon("img/carteArgent.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Or",new ImageIcon(new ImageIcon("img/carteOr.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
-		
+		myImgs.put("OrBIG",new ImageIcon(new ImageIcon("img/carteOr.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+        myImgs.put("ArgentBIG",new ImageIcon(new ImageIcon("img/carteArgent.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+        myImgs.put("CuivreBIG",new ImageIcon(new ImageIcon("img/carteCuivre.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
 		/**
 		 * Cartes Victoire
 		 */
@@ -28,6 +30,10 @@ public class ImageManager {
 		myImgs.put("Duche",new ImageIcon(new ImageIcon("img/carteDuche.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Province",new ImageIcon(new ImageIcon("img/carteProvince.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Malediction",new ImageIcon(new ImageIcon("img/carteMalediction.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+        myImgs.put("DomaineBIG",new ImageIcon(new ImageIcon("img/carteDomaine.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("DucheBIG",new ImageIcon(new ImageIcon("img/carteDuche.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("ProvinceBIG",new ImageIcon(new ImageIcon("img/carteProvince.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("MaledictionBIG",new ImageIcon(new ImageIcon("img/carteMalediction.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
 		
 		/**
 		 * Cartes Action
@@ -42,6 +48,16 @@ public class ImageManager {
 		myImgs.put("Atelier",new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Renovation",new ImageIcon(new ImageIcon("img/carteRenovation.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		myImgs.put("Village",new ImageIcon(new ImageIcon("img/carteVillage.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
+        myImgs.put("BucheronBIG",new ImageIcon(new ImageIcon("img/carteBucheron.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("CaveBIG",new ImageIcon(new ImageIcon("img/carteCave.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("MineBIG",new ImageIcon(new ImageIcon("img/carteMine.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("DouvesBIG",new ImageIcon(new ImageIcon("img/carteDouves.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("MiliceBIG",new ImageIcon(new ImageIcon("img/carteMilice.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("MarcheBIG",new ImageIcon(new ImageIcon("img/carteMarche.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("ForgeronBIG",new ImageIcon(new ImageIcon("img/carteForgeron.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("AtelierBIG",new ImageIcon(new ImageIcon("img/carteAtelier.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("RenovationBIG",new ImageIcon(new ImageIcon("img/carteRenovation.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
+		myImgs.put("VillageBIG",new ImageIcon(new ImageIcon("img/carteVillage.png").getImage().getScaledInstance(300, 600, Image.SCALE_DEFAULT)));
 		myImgs.put("Dos",new ImageIcon(new ImageIcon("img/dos.png").getImage().getScaledInstance(100, 200, Image.SCALE_DEFAULT)));
 		/**
 		 * Images Test
