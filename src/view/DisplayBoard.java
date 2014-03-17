@@ -32,16 +32,22 @@ public class DisplayBoard{
         for(int i=0; i<nbCard; i++)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
         	board[i] = new JPanel();
         	board[i].setOpaque(false);
 	        if (i>nbCard-4)//Carte trï¿½sor
 	    		board[i].setBounds(780, (i-13)*50, 100, 200);
 =======
+=======
+>>>>>>> f82e8ed487144ef17b4c90347c9750e5245c4adc
         	dc[i] = new DisplayCard();
         	dc[i].addMouseListener(this);
         	dc[i].setOpaque(false);
 	        if (i>nbCard-4)//Carte trésor
 	    		dc[i].setBounds(780, (i-13)*50, 100, 200);
+<<<<<<< HEAD
+>>>>>>> f82e8ed487144ef17b4c90347c9750e5245c4adc
+=======
 >>>>>>> f82e8ed487144ef17b4c90347c9750e5245c4adc
 	        else if (i>nbCard-8)//Carte Victoire
 	    		dc[i].setBounds(130, (i-9)*50, 100, 200);
