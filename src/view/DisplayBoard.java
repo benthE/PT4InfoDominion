@@ -11,8 +11,7 @@ import model.boardGame;
 
 public class DisplayBoard{
 	final static Integer nbCard = 17; 
-	JPanel board[];
-    JLabel card[];
+    DisplayCard dc[];
     private int click=1;
     
 	public DisplayBoard() {
@@ -25,24 +24,31 @@ public class DisplayBoard{
 	}
 	
 	public void InitDisplayBoard(){
-		board = new JPanel[nbCard];
-        card = new JLabel[nbCard];
-        
-        /**
+		dc = new DisplayCard[nbCard];
+		
+		/**
          * Initialisation position carte plateau
          */
         for(int i=0; i<nbCard; i++)
         {
+<<<<<<< HEAD
         	board[i] = new JPanel();
         	board[i].setOpaque(false);
 	        if (i>nbCard-4)//Carte trï¿½sor
 	    		board[i].setBounds(780, (i-13)*50, 100, 200);
+=======
+        	dc[i] = new DisplayCard();
+        	dc[i].addMouseListener(this);
+        	dc[i].setOpaque(false);
+	        if (i>nbCard-4)//Carte trésor
+	    		dc[i].setBounds(780, (i-13)*50, 100, 200);
+>>>>>>> f82e8ed487144ef17b4c90347c9750e5245c4adc
 	        else if (i>nbCard-8)//Carte Victoire
-	    		board[i].setBounds(130, (i-9)*50, 100, 200);
+	    		dc[i].setBounds(130, (i-9)*50, 100, 200);
 	        else if(i>nbCard-13)//2eme ligne de carte action
-	        	board[i].setBounds(150+((i-4)*100), 240, 100, 200);
+	        	dc[i].setBounds(150+((i-4)*100), 240, 100, 200);
 	        else
-	        	board[i].setBounds(150+((i+1)*100), 20, 100, 200);
+	        	dc[i].setBounds(150+((i+1)*100), 20, 100, 200);
         }
 	}
 	
@@ -50,6 +56,34 @@ public class DisplayBoard{
 		/**
 		 * Affichage plateau
 		 */
+<<<<<<< HEAD
+=======
+		for(int i=0; i<nbCard; i++)
+        {
+  			dc[i].updateDisplayCard(bG.getMyCards().get(i).getMyCard().getName(),img);
+			all.add(dc[i],new Integer(i+1));//i "+1" car le fond est en 0.
+       	}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		click++;
+		DisplayCard source = new DisplayCard(new BorderLayout());
+		source=(DisplayCard)e.getSource();
+		//System.out.println(source.getComponents());
+		
+		if(click%2==0){
+			source.setSize(400,800);
+			source.updateBounds();
+		source.setOpaque(true);}
+		else
+			source.setSize(100,200);
+		
+		source.revalidate();
+		source.repaint();
+	}
+>>>>>>> f82e8ed487144ef17b4c90347c9750e5245c4adc
 
         for(int i=0; i<nbCard; i++)
         {
