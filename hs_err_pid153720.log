@@ -1,0 +1,79 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 32744 bytes for ChunkPool::allocate
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:211), pid=153720, tid=154292
+#
+# JRE version: Java(TM) SE Runtime Environment (7.0_51-b13) (build 1.7.0_51-b13)
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (24.51-b03 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000007dbe000):  JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=154292, stack(0x00000000090d0000,0x00000000091d0000)]
+
+Stack: [0x00000000090d0000,0x00000000091d0000]
+
+Current CompileTask:
+C2: 229870  201             java.awt.image.BufferedImage::isStandard (44 bytes)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+  0x000000000dd58800 JavaThread "Image Fetcher 1" daemon [_thread_new, id=154816, stack(0x0000000000000000,0x0000000000000000)]
+  0x000000000dd58000 JavaThread "Image Fetcher 3" daemon [_thread_blocked, id=153660, stack(0x000000000ca60000,0x000000000cb60000)]
+  0x000000000dd56800 JavaThread "Image Fetcher 2" daemon [_thread_in_vm, id=155152, stack(0x000000000bef0000,0x000000000bff0000)]
+  0x000000000dd55800 JavaThread "Image Fetcher 1" daemon [_thread_blocked, id=155200, stack(0x000000000bd50000,0x000000000be50000)]
+  0x000000000dd57000 JavaThread "Image Fetcher 0" daemon [_thread_blocked, id=155148, stack(0x000000000c000000,0x000000000c100000)]
+  0x0000000007de8000 JavaThread "AWT-Windows" daemon [_thread_in_native, id=147032, stack(0x0000000009ec0000,0x0000000009fc0000)]
+  0x0000000009680800 JavaThread "Java2D Disposer" daemon [_thread_blocked, id=150236, stack(0x0000000009aa0000,0x0000000009ba0000)]
+  0x0000000007dcf800 JavaThread "Service Thread" daemon [_thread_blocked, id=153292, stack(0x00000000094f0000,0x00000000095f0000)]
+  0x0000000007dcd000 JavaThread "C2 CompilerThread1" daemon [_thread_in_native, id=154072, stack(0x00000000092a0000,0x00000000093a0000)]
+=>0x0000000007dbe000 JavaThread "C2 CompilerThread0" daemon [_thread_in_native, id=154292, stack(0x00000000090d0000,0x00000000091d0000)]
+  0x0000000007dbc800 JavaThread "Attach Listener" daemon [_thread_blocked, id=150776, stack(0x00000000089f0000,0x0000000008af0000)]
+  0x0000000007dbb000 JavaThread "Signal Dispatcher" daemon [_thread_blocked, id=154532, stack(0x0000000008f50000,0x0000000009050000)]
+  0x0000000001e6e000 JavaThread "Finalizer" daemon [_thread_blocked, id=153280, stack(0x0000000008d10000,0x0000000008e10000)]
+  0x0000000001e68000 JavaThread "Reference Handler" daemon [_thread_blocked, id=152164, stack(0x0000000008b30000,0x0000000008c30000)]
+  0x0000000001f0d800 JavaThread "main" [_thread_blocked, id=153416, stack(0x0000000002090000,0x0000000002190000)]
+
+Other Threads:
+  0x0000000007d62000 VMThread [stack: 0x00000000088c0000,0x00000000089c0000] [id=152896]
+  0x0000000007dd9800 WatcherThread [stack: 0x0000000008e10000,0x0000000008f10000] [id=147420]
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap
+ PSYoungGen      total 229376K, used 132494K [0x00000000eb000000, 0x0000000100000000, 0x0000000100000000)
+  eden space 114688K, 46% used [0x00000000eb000000,0x00000000ee497668,0x00000000f2000000)
+  from space 114688K, 68% used [0x00000000f2000000,0x00000000f6ccc3f0,0x00000000f9000000)
+  to   space 114688K, 0% used [0x00000000f9000000,0x00000000f9000000,0x0000000100000000)
+ ParOldGen       total 506368K, used 367351K [0x00000000c1000000, 0x00000000dfe80000, 0x00000000eb000000)
+  object space 506368K, 72% used [0x00000000c1000000,0x00000000d76bde08,0x00000000dfe80000)
+ PSPermGen       total 21504K, used 6239K [0x00000000bbe00000, 0x00000000bd300000, 0x00000000c1000000)
+  object space 21504K, 29% used [0x00000000bbe00000,0x00000000bc417ed0,0x00000000bd300000)
+
+Card table byte_map: [0x0000000005190000,0x00000000053c0000] byte_map_base: 0x0000000004bb1000
+
+Polling page: 0x0000000000100000
+
+Code Cache  [0x0000000002190000, 0x0000000002400000, 0x0000000005190000)
+ total_blobs=494 nmethods=193 adapters=254 free_code_cache=48317Kb largest_free_block=49441280
+
+Compilation events (10 events):
