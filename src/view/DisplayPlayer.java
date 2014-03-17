@@ -15,9 +15,7 @@ public class DisplayPlayer{
 	private JPanel helpGoldPanel;
 	
 	private JLabel helpNbCard;
-	//private JLabel handCardLabel[] = new JLabel[20];
-	//private JPanel handCardPanel[] = new JPanel[20];
-
+	
 	private DisplayCard handCard[] = new DisplayCard[20];
 	
 	public DisplayPlayer(){

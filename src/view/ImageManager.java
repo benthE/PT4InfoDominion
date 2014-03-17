@@ -62,7 +62,7 @@ public class ImageManager {
 		/**
 		 * Images Test
 		 */
-		myImgs.put("test",new ImageIcon("img/test.jpg"));
+		myImgs.put("test",new ImageIcon(new ImageIcon("img/test.jpg").getImage().getScaledInstance(1600, 1080, Image.SCALE_DEFAULT)));
 	}
 
 	/**

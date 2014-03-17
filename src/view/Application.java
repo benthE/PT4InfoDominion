@@ -26,15 +26,14 @@ public class Application extends JFrame implements ActionListener{
 		}
 
 		private void debutPartie(JLayeredPane all, boardGame bG,ImageManager img){
-	        setSize(new Dimension(1000,700));
+	        setSize(new Dimension(1600,1080));
 
 	        /**
 	         * Affichage du fond
 	         */
 	        JLabel Background = new JLabel(img.getMyImgs().get("test"));
 	        JPanel myBg = new JPanel();
-	        myBg.setBounds(0, 0, 1000, 700);
-	        myBg.add(Background);
+	        myBg.setBounds(0, 0, 1600, 1080);
 	        myBg.add(Background);
 	        all.add(myBg,new Integer(0));
 
@@ -51,17 +50,11 @@ public class Application extends JFrame implements ActionListener{
 
 		public static void main(String[] args) throws IOException {
 			/**
-			 * Initialisation model
-			 */
-			//boardGame bG = new boardGame();
-
-
-			/**
 			 * Initialisation vue
 			 */
             bigCardPanel = new JPanel();
             bigCard = new JLabel();
-            bigCardPanel.setBounds(350,30,300,700);
+            bigCardPanel.setBounds(950,30,300,700);
             bigCardPanel.setOpaque(false);
             bigCardPanel.add(bigCard);
 			Application app = new Application();
