@@ -4,6 +4,7 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
+import model.Card;
 import model.Player;
 import model.boardGame;
 
@@ -30,57 +31,68 @@ public class DisplayPlayer{
 	public DisplayPlayer(JLayeredPane all, Player p,ImageManager img, Application app)
 	{
 		helpNbCard = new JLabel();
-		initDisplayPlayer(all,p,img,app);
+		initDisplayPlayer(app);
 	}
   
+	public int calculGold(ArrayList<Card> c){
+	int out = 0;
+	for(int i=0; i<c.size(); i++ )
+	{
+		if( c.get(i).getName() == "Cuivre")
+			out += 1;
+		else if( c.get(i).getName() == "Argent")
+			out+= 2;
+		else if( c.get(i).getName() == "Or")
+			out+= 3;
+	}
+	return out;
+	}
 	
-	public void initDisplayPlayer(JLayeredPane all, Player p,final ImageManager img,final Application app){
-		String nameTmp;
-
-		int i;
-		if(p.getMyHand().getMyCards().size()>0)
-		{
-			for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
-			{
-				handCard[i] = new DisplayCard();
-				handCard[i].updateDisplayCard(i,p.getMyHand().getMyCards().get(i).getName(),img);
-				
-				handCard[i].setOpaque(false);
-				handCard[i].setBounds((i+1)*150, 500, 100, 200);
-				
-				if( p.getMyHand().getMyCards().get(i).getName() == "Cuivre")
-					app.setJoueurOr(1);
-			
-				all.add(handCard[i],new Integer(i+8));
-				all.revalidate();
-				all.add(handCard[i],new Integer(i+8));
-
-
-			}
-		handCard[i+1] = new DisplayCard();
-		handCard[i+1].updateDisplayCard(i,"Dos",img);
-		handCard[i+1].setOpaque(false);
-		handCard[i+1].setBounds(10, 250, 100, 200);
-		
-		all.add(handCard[i+1],new Integer(i+1+8));
-		
-		handCard[i+2] = new DisplayCard();
-		handCard[i+2].setBounds(50, 340, 20, 20);
-		
-		helpNbCard = new JLabel();
-		helpNbCard.setText("" + p.getMyDeck().getMyCards().size());
-
-		handCard[i+2].add(helpNbCard);
-		all.add(handCard[i+2],new Integer(i+2+8));
-		
+	public void refreshGold(Application app){
 		helpGold = new JLabel();
 		helpGold.setText("Pièces d'or : " + app.getJoueurOr());
 		helpGoldPanel = new JPanel();
 		helpGoldPanel.add(helpGold);
 		helpGoldPanel.setBounds(780, 400, 100, 30);
-		all.add(helpGoldPanel, new Integer(i+3+8));
-		all.revalidate();
-		all.add(helpGoldPanel, new Integer(i+3+8));
+		app.getAll().add(helpGoldPanel, new Integer(5+3+8));
+		app.getAll().revalidate();
+	}
+	
+	public void initDisplayPlayer(final Application app){
+		String nameTmp;
+
+		int i;
+		if(app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().size()>0)
+		{
+			for( i = 0; i<app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().size(); i++)
+			{
+				handCard[i] = new DisplayCard();
+				handCard[i].updateDisplayCard(i,app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().get(i).getName(),app.getiM());
+				
+				handCard[i].setOpaque(false);
+				handCard[i].setBounds((i+1)*150, 500, 100, 200);
+			
+				app.getAll().add(handCard[i],new Integer(i+8));
+				app.getAll().revalidate();
+				app.getAll().add(handCard[i],new Integer(i+8));
+
+
+			}
+		handCard[i+1] = new DisplayCard();
+		handCard[i+1].updateDisplayCard(i,"Dos",app.getiM());
+		handCard[i+1].setOpaque(false);
+		handCard[i+1].setBounds(10, 250, 100, 200);
+		
+		app.getAll().add(handCard[i+1],new Integer(i+1+8));
+		
+		handCard[i+2] = new DisplayCard();
+		handCard[i+2].setBounds(50, 340, 20, 20);
+		
+		helpNbCard = new JLabel();
+		helpNbCard.setText("" + app.getbG().getMyPlayers().get(0).getMyDeck().getMyCards().size());
+
+		handCard[i+2].add(helpNbCard);
+		app.getAll().add(handCard[i+2],new Integer(i+2+8));
 		}
 		else
 		{
@@ -90,7 +102,7 @@ public class DisplayPlayer{
 				handCard[j].repaint();	
 			}
 		}
-		for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
+		for( i = 0; i<app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().size(); i++)
 		{
 		handCard[i].addMouseListener(new MouseAdapter() {
             @Override
@@ -99,7 +111,7 @@ public class DisplayPlayer{
                 
                 app.getBigCardPanel().setVisible(true);
 
-                app.getBigCard().setIcon(img.getMyImgs().get(l.getMyName()+"BIG"));
+                app.getBigCard().setIcon(app.getiM().getMyImgs().get(l.getMyName()+"BIG"));
             }
         });
         handCard[i].addMouseListener(new MouseAdapter() {
@@ -122,7 +134,7 @@ public class DisplayPlayer{
                 
                 app.getbG().getMyPlayers().get(0).playCard(l.getMyId());
                 played.add(handCard[l.getMyId()]);//on en fait une carte jouée
-                app.getAll().add(played.get(played.size()-1));
+                //app.getAll().add(played.get(played.size()-1));
                 app.revalidate();
             }
         });

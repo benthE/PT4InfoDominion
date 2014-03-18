@@ -54,11 +54,12 @@ public class boardGame {
 		myCards.put(16,new PaketBoard(new CardTreasure(TypeTreasure.GOLD),10));
 	}
 	
-
-	
-	public void buyCard(Integer id){
+	public void buyCard(Integer id)
+	{
+		System.out.println(myPlayers.get(nbRound%myPlayers.size()).getMyPoints().getPPurchase());
 		if(myPlayers.get(nbRound%myPlayers.size()).getMyPoints().getPPurchase() > 0)
 		{
+			System.out.println("joueur : "+nbRound%myPlayers.size()+" carte : "+myCards.get(id).getMyCard());
 			myPlayers.get(nbRound%myPlayers.size()).getMyPoints().setPPurchase(myPlayers.get(nbRound%myPlayers.size()).getMyPoints().getPPurchase()-1);
 			myPlayers.get(nbRound%myPlayers.size()).getMyDiscard().addCard(myCards.get(id).getMyCard());
 			myCards.get(id).setMyNbCard(myCards.get(id).getMyNbCard()-1);

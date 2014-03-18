@@ -129,7 +129,7 @@ public class Application extends JFrame implements ActionListener{
 		}
 
 		public void setJoueurOr(int a){
-			aideJoueurOr+=a;
+			aideJoueurOr=a;
 		}
 
 		public void actionPerformed(ActionEvent e) {
@@ -137,14 +137,19 @@ public class Application extends JFrame implements ActionListener{
 
 			if(source == myButton0)
 			{
-				int resetOr = 0 - getJoueurOr();
-				setJoueurOr(resetOr);
-
+				//int resetOr = 0 - getJoueurOr();
+				//setJoueurOr(resetOr);
+				//setJoueurOr(dp.calculGold(bG.getMyPlayers().get(0).getMyHand().getMyCards()));
+				
 				System.out.println("Tour suivant");
 				bG.getMyPlayers().get(0).discardHand();
-				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				//dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				//dp.initDisplayPlayer(app);
 				bG.getMyPlayers().get(0).updateHand();
-				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				//dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
+				dp.initDisplayPlayer(app);
+				setJoueurOr(dp.calculGold(bG.getMyPlayers().get(0).getMyHand().getMyCards()));
+				dp.refreshGold(app);
 				System.out.println("Or = " + getJoueurOr());
 			}
 			
@@ -159,7 +164,10 @@ public class Application extends JFrame implements ActionListener{
 				app.getbG().initCards();
 				app.debutPartie(app.getAll(),app.getbG(),app.getiM());
 				DisplayBoard db = new DisplayBoard(app,app.getbG(),app.getiM());
-				app.getDp().initDisplayPlayer(app.getAll(),app.getbG().getMyPlayers().get(0),app.getiM(),app);
+				//app.getDp().initDisplayPlayer(app.getAll(),app.getbG().getMyPlayers().get(0),app.getiM(),app);
+				app.getDp().initDisplayPlayer(app);
+				setJoueurOr( dp.calculGold(bG.getMyPlayers().get(0).getMyHand().getMyCards()));
+				dp.refreshGold(app);
 				app.add(app.getAll());
 				app.show(true);	
 			}
