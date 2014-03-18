@@ -20,9 +20,9 @@ public class DisplayBoard implements MouseListener{
 		InitDisplayBoard();
 	}
 
-	public DisplayBoard(JLayeredPane all, boardGame bG, ImageManager img){
+	public DisplayBoard(Application app, boardGame bG, ImageManager img){
 		InitDisplayBoard();
-		UpdateBoard(all, bG, img);
+		UpdateBoard(app, bG, img);
 	}
 	
 	public void InitDisplayBoard(){
@@ -47,24 +47,24 @@ public class DisplayBoard implements MouseListener{
         }
 	}
 	
-	public void UpdateBoard(JLayeredPane all, boardGame bG, final ImageManager img) {
+	public void UpdateBoard(final Application app,final boardGame bG, final ImageManager img) {
 		/**
 		 * Affichage plateau
 		 */
         for(int i=0; i<nbCard; i++)
         {
-            dc[i].updateDisplayCard(bG.getMyCards().get(i).getMyCard().getName(),img);
-            all.add(dc[i],new Integer(i+1));//i "+1" car le fond est en 0.
+            dc[i].updateDisplayCard(i,bG.getMyCards().get(i).getMyCard().getName(),img);
+            app.getAll().add(dc[i],new Integer(i+1));//i "+1" car le fond est en 0.
         }
 		/*On ajoute les listeners aux cartes contenues dans card[]*/
         for (int i=0; i<dc.length; i++){
             dc[i].addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
-                    System.out.println(e.getSource().toString());
+                    //System.out.println(e.getSource().toString());
                     DisplayCard l = (DisplayCard) e.getSource();
 
-                    Application app = new Application();
+                    //Application app = new Application();
                     app.getBigCardPanel().setVisible(true);
 
                     app.getBigCard().setIcon(img.getMyImgs().get(l.getMyName()+"BIG"));
@@ -73,10 +73,20 @@ public class DisplayBoard implements MouseListener{
             dc[i].addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseExited(MouseEvent e) {
+                    //System.out.println(e.getSource().toString());
+                    DisplayCard l = (DisplayCard) e.getSource();
+                   // Application app = new Application();
+                    app.getBigCardPanel().setVisible(false);
+                }
+            });
+            dc[i].addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
                     System.out.println(e.getSource().toString());
                     DisplayCard l = (DisplayCard) e.getSource();
-                    Application app = new Application();
-                    app.getBigCardPanel().setVisible(false);
+                    System.out.println(bG.getMyCards().get(l.getMyId()).getMyCard().getPrice());
+                    
+                    
                 }
             });
         }

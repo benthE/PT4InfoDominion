@@ -6,6 +6,7 @@ import java.util.HashMap;
 public class boardGame {
 
 	private ArrayList<Player> myPlayers=null;
+	private ArrayList<Card> played = null;
 	private HashMap<Integer, PaketBoard> myCards=null;
 	private int nbRound;
 	
@@ -16,6 +17,7 @@ public class boardGame {
 
 	public void initPlayers(){
 		myPlayers = new ArrayList<Player>();
+		played = new ArrayList<Card>();
 		myPlayers.add(new Player(0));
 		myPlayers.get(0).updateHand();
 	}

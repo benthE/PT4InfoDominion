@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import model.Player;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class DisplayPlayer{
 
@@ -29,7 +31,7 @@ public class DisplayPlayer{
 	}
   
 	
-	public void initDisplayPlayer(JLayeredPane all, Player p,ImageManager img, Application app){
+	public void initDisplayPlayer(JLayeredPane all, Player p,final ImageManager img,final Application app){
 		String nameTmp;
 
 		int i;
@@ -38,7 +40,8 @@ public class DisplayPlayer{
 			for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
 			{
 				handCard[i] = new DisplayCard();
-				handCard[i].updateDisplayCard(p.getMyHand().getMyCards().get(i).getName(),img);
+				handCard[i].updateDisplayCard(i,p.getMyHand().getMyCards().get(i).getName(),img);
+				
 				handCard[i].setOpaque(false);
 				handCard[i].setBounds((i+1)*150, 500, 100, 200);
 				
@@ -46,10 +49,11 @@ public class DisplayPlayer{
 					app.setJoueurOr(1);
 			
 				all.add(handCard[i],new Integer(i+8));
+	
+
 			}
-			
 		handCard[i+1] = new DisplayCard();
-		handCard[i+1].updateDisplayCard("Dos",img);
+		handCard[i+1].updateDisplayCard(i,"Dos",img);
 		handCard[i+1].setOpaque(false);
 		handCard[i+1].setBounds(10, 250, 100, 200);
 		
@@ -81,70 +85,30 @@ public class DisplayPlayer{
 				handCard[j].repaint();	
 			}
 		}
-
-		/*
-		int i;
-		if(p.getMyHand().getMyCards().size()>0)
+		for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
 		{
-			for( i = 0; i<p.getMyHand().getMyCards().size(); i++)
-			{
-				handCardPanel[i] = new JPanel();
-				handCardPanel[i].setOpaque(false);
-				handCardPanel[i].setBounds((i+1)*150, 500, 100, 200);
-			
-				nameTmp = p.getMyHand().getMyCards().get(i).getName();
-								
-				handCardLabel[i] = new JLabel(img.getMyImgs().get(nameTmp));
-				
-				if( nameTmp == "Cuivre")
-					app.setJoueurOr(1);
-				
-			
-				handCardPanel[i].add(handCardLabel[i]);
-				all.add(handCardPanel[i],new Integer(i+8));
-			}
-		
-		
-		handCardPanel[i+1] = new JPanel();
-		handCardPanel[i+1].setBounds(10, 250, 100, 200);
-		handCardPanel[i+1].setOpaque(false);
-		
-		handCardLabel[i+1] = new JLabel(img.getMyImgs().get("Dos"));
-		handCardPanel[i+1].add(handCardLabel[i+1]);
-		all.add(handCardPanel[i+1],new Integer(i+1+8));
-		
-		handCardPanel[i+2] = new JPanel();
-		handCardPanel[i+2].setBounds(50, 340, 20, 20);
-		
-		helpNbCard = new JLabel();
-		helpNbCard.setText("" + p.getMyDeck().getMyCards().size());
+		handCard[i].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                //System.out.println(e.getSource().toString());
+                DisplayCard l = (DisplayCard) e.getSource();
 
-		handCardPanel[i+2].add(helpNbCard);
-        handCardPanel[i+2].setOpaque(false);
-		all.add(handCardPanel[i+2],new Integer(i+2+8));
-        handCardPanel[i+2].revalidate();
-        all.add(handCardPanel[i+2],new Integer(i+2+8));
+                //Application app = new Application();
+                app.getBigCardPanel().setVisible(true);
 
-
-            helpGold = new JLabel();
-		helpGold.setText("Pièces d'or : " + app.getJoueurOr());
-		helpGoldPanel = new JPanel();
-		helpGoldPanel.add(helpGold);
-		helpGoldPanel.setBounds(800, 400, 100, 30);
-		all.add(helpGoldPanel, new Integer(i+3+8));
-		all.revalidate();
-		all.add(helpGoldPanel, new Integer(i+3+8));
+                app.getBigCard().setIcon(img.getMyImgs().get(l.getMyName()+"BIG"));
+             //   System.out.println(l.getName());
+            }
+        });
+        handCard[i].addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    //System.out.println(e.getSource().toString());
+                    DisplayCard l = (DisplayCard) e.getSource();
+                  //  Application app = new Application();
+                    app.getBigCardPanel().setVisible(false);
+                }
+            });
 		}
-		else
-		{
-			for(int j=0; j<5; j++)
-			{
-				handCardPanel[j].removeAll();
-				handCardPanel[j].repaint();	
-			}
-		}
-*/
 	}
-	
-	
 }

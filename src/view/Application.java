@@ -66,7 +66,7 @@ public class Application extends JFrame implements ActionListener{
 		     myBg.add(Background);
 		     myBg.add(Background);
 		     all.add(myBg,new Integer(0));
-		        
+		     
 		     play = new JButton();
 		     play.setText("JOUER");
 		     play.setFont(s);
@@ -160,7 +160,7 @@ public class Application extends JFrame implements ActionListener{
 				app.getbG().initPlayers();
 				app.getbG().initCards();
 				app.debutPartie(app.getAll(),app.getbG(),app.getiM());
-				DisplayBoard db = new DisplayBoard(app.getAll(),app.getbG(),app.getiM());
+				DisplayBoard db = new DisplayBoard(app,app.getbG(),app.getiM());
 				app.getDp().initDisplayPlayer(app.getAll(),app.getbG().getMyPlayers().get(0),app.getiM(),app);
 				app.add(app.getAll());
 				app.show(true);	

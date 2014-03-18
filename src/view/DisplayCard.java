@@ -9,13 +9,15 @@ public class DisplayCard extends JPanel {
 	
 	private JLabel myImg;
 	private String myName="";
+	private Integer myId=0;
 	
 	public DisplayCard() {
 		super();
 	}
 
-	public void updateDisplayCard(String name, ImageManager img) {
+	public void updateDisplayCard(Integer id, String name, ImageManager img) {
 		myName=name;
+		myId=id;
 		myImg = new JLabel(img.getMyImgs().get(name));
 		
 		this.add(myImg);
@@ -67,5 +69,19 @@ public class DisplayCard extends JPanel {
 	 */
 	public void setMyName(String myName) {
 		this.myName = myName;
+	}
+
+	/**
+	 * @return the myId
+	 */
+	public Integer getMyId() {
+		return myId;
+	}
+
+	/**
+	 * @param myId the myId to set
+	 */
+	public void setMyId(Integer myId) {
+		this.myId = myId;
 	}
 }
