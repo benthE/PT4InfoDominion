@@ -3,10 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import view.DisplayCard;
+
 public class boardGame {
 
 	private ArrayList<Player> myPlayers=null;
-	private ArrayList<Card> played = null;
+	private ArrayList<DisplayCard> played = null;
 	private HashMap<Integer, PaketBoard> myCards=null;
 	private int nbRound;
 	
@@ -17,7 +19,7 @@ public class boardGame {
 
 	public void initPlayers(){
 		myPlayers = new ArrayList<Player>();
-		played = new ArrayList<Card>();
+		played = new ArrayList<DisplayCard>();
 		myPlayers.add(new Player(0));
 		myPlayers.get(0).updateHand();
 	}
@@ -74,6 +76,14 @@ public class boardGame {
 	 */
 	public void setMyPlayers(ArrayList<Player> myPlayers) {
 		this.myPlayers = myPlayers;
+	}
+
+	public ArrayList<DisplayCard> getPlayed() {
+		return played;
+	}
+
+	public void setPlayed(ArrayList<DisplayCard> played) {
+		this.played = played;
 	}
 
 	/**

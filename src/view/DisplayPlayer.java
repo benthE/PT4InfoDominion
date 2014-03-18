@@ -5,10 +5,12 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import model.Player;
+import model.boardGame;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class DisplayPlayer{
 
@@ -19,6 +21,7 @@ public class DisplayPlayer{
 	private JLabel helpNbCard;
 	
 	private DisplayCard handCard[] = new DisplayCard[20];
+	private ArrayList<DisplayCard> played = new ArrayList<DisplayCard>();
 	
 	public DisplayPlayer(){
 		helpNbCard = new JLabel();
@@ -49,7 +52,9 @@ public class DisplayPlayer{
 					app.setJoueurOr(1);
 			
 				all.add(handCard[i],new Integer(i+8));
-	
+				all.revalidate();
+				all.add(handCard[i],new Integer(i+8));
+
 
 			}
 		handCard[i+1] = new DisplayCard();
@@ -109,6 +114,20 @@ public class DisplayPlayer{
                     app.getBigCardPanel().setVisible(false);
                 }
             });
+        handCard[i].addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+            	Application app = new Application();
+                DisplayCard l = (DisplayCard) e.getSource();
+                
+                System.out.println(l.getMyId());
+                handCard[l.getMyId()].setVisible(false);//enlève la carte à l'écran
+                
+                played.add(handCard[l.getMyId()]);//on en fait une carte jouée
+                
+                app.revalidate();
+            }
+        });
 		}
 	}
 }
