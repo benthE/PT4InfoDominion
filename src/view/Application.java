@@ -118,9 +118,7 @@ public class Application extends JFrame implements ActionListener{
             bigCardPanel.setVisible(false);
 
             app.affichageMenu(app.getAll(), app.getiM());
-
-           
-
+            
 			app.add(app.getAll());
 
 			app.show(true);

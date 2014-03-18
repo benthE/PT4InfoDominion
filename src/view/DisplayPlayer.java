@@ -95,36 +95,34 @@ public class DisplayPlayer{
 		handCard[i].addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                //System.out.println(e.getSource().toString());
                 DisplayCard l = (DisplayCard) e.getSource();
-
-                //Application app = new Application();
+                
                 app.getBigCardPanel().setVisible(true);
 
                 app.getBigCard().setIcon(img.getMyImgs().get(l.getMyName()+"BIG"));
-             //   System.out.println(l.getName());
             }
         });
         handCard[i].addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseExited(MouseEvent e) {
-                    //System.out.println(e.getSource().toString());
+
                     DisplayCard l = (DisplayCard) e.getSource();
-                  //  Application app = new Application();
+
                     app.getBigCardPanel().setVisible(false);
                 }
             });
         handCard[i].addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-            	Application app = new Application();
+
                 DisplayCard l = (DisplayCard) e.getSource();
                 
                 System.out.println(l.getMyId());
                 handCard[l.getMyId()].setVisible(false);//enlève la carte à l'écran
                 
+                app.getbG().getMyPlayers().get(0).playCard(l.getMyId());
                 played.add(handCard[l.getMyId()]);//on en fait une carte jouée
-                
+                app.getAll().add(played.get(played.size()-1));
                 app.revalidate();
             }
         });

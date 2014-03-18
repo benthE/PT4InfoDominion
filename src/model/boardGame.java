@@ -56,14 +56,14 @@ public class boardGame {
 	
 
 	
-	public static void main(String[] args) {
-		boardGame bG = new boardGame();
-		bG.initPlayers();
-		bG.initCards();
-		System.out.println(bG.myPlayers.toString());
-
+	public void buyCard(Integer id){
+		if(myPlayers.get(nbRound%myPlayers.size()).getMyPoints().getPPurchase() > 0)
+		{
+			myPlayers.get(nbRound%myPlayers.size()).getMyPoints().setPPurchase(myPlayers.get(nbRound%myPlayers.size()).getMyPoints().getPPurchase()-1);
+			myPlayers.get(nbRound%myPlayers.size()).getMyDiscard().addCard(myCards.get(id).getMyCard());
+			myCards.get(id).setMyNbCard(myCards.get(id).getMyNbCard()-1);
+		}
 	}
-
 	/**
 	 * @return the myPlayers
 	 */

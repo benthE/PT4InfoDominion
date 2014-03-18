@@ -10,6 +10,7 @@ public class Player {
 	private PaketDiscard myDiscard=null;
 	//private PaketTrash myTrash=null;
 	private Points myPoints=null;
+	private ArrayList<Card> played  = null;
 	
 	/**
 	 * Constructor Player
@@ -25,6 +26,8 @@ public class Player {
 		myDeck.initDeck();
 		myHand = new PaketHand();
 		myDiscard = new PaketDiscard();
+		myPoints = new Points();
+		played = new ArrayList<Card>();
 		//myTrash = new PaketTrash();
 	}
 	
@@ -32,6 +35,7 @@ public class Player {
 		myDeck.getMyCards().addAll(myDiscard.getMyCards());
 		myDiscard.setMyCards( new ArrayList<Card>());
 		myDiscard.setTopCard(null);
+		myPoints = new Points();
 	}
 	
 	public void updateHand(){
@@ -49,10 +53,21 @@ public class Player {
 			}
 	}
 	
+	public void playCard(Integer id){
+		played.add(myHand.getMyCards().get(id));
+		myHand.getMyCards().remove(id);
+		
+	}
+	
+	public void discardPlayed(){
+		myDiscard.getMyCards().addAll(played);
+		played = new ArrayList();
+	}
+	
 	public void discardHand(){
 		if(myHand.getMyCards().size() > 0)
 		{
-			myDeck.getMyCards().addAll(myHand.getMyCards());
+			myDiscard.getMyCards().addAll(myHand.getMyCards());
 			myHand.setMyCards( new ArrayList<Card>());
 		}
 	}
@@ -120,5 +135,19 @@ public class Player {
 		return "Player [num=" + num + ", myDeck=" + myDeck.toString() + ", myHand="
 				+ myHand + ", myPoints=" + myPoints
 				+ "]";
+	}
+
+	/**
+	 * @return the myDiscard
+	 */
+	public PaketDiscard getMyDiscard() {
+		return myDiscard;
+	}
+
+	/**
+	 * @param myDiscard the myDiscard to set
+	 */
+	public void setMyDiscard(PaketDiscard myDiscard) {
+		this.myDiscard = myDiscard;
 	}
 }
