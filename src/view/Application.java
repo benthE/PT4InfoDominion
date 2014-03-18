@@ -144,7 +144,7 @@ public class Application extends JFrame implements ActionListener{
 				System.out.println("Tour suivant");
 				bG.getMyPlayers().get(0).discardHand();
 				//dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
-				//dp.initDisplayPlayer(app);
+				dp.initDisplayPlayer(app);
 				bG.getMyPlayers().get(0).updateHand();
 				//dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
 				dp.initDisplayPlayer(app);
@@ -152,7 +152,6 @@ public class Application extends JFrame implements ActionListener{
 				dp.refreshGold(app);
 				System.out.println("Or = " + getJoueurOr());
 			}
-			
 			else if(source == play){
 				buttonPlay.setVisible(false);
 				buttonQuit.setVisible(false);

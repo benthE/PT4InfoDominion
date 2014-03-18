@@ -67,7 +67,8 @@ public class Player {
 	public void discardHand(){
 		if(myHand.getMyCards().size() > 0)
 		{
-			myDiscard.getMyCards().addAll(myHand.getMyCards());
+			for(int i = 0; i<myHand.getMyCards().size(); i++)
+				myDiscard.addCard(myHand.getMyCards().get(i));
 			myHand.setMyCards( new ArrayList<Card>());
 		}
 	}

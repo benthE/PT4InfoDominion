@@ -24,6 +24,8 @@ public class DisplayPlayer{
 	private DisplayCard handCard[] = new DisplayCard[20];
 	private ArrayList<DisplayCard> played = new ArrayList<DisplayCard>();
 	
+	private DisplayCard cardDiscard = new DisplayCard();
+	
 	public DisplayPlayer(){
 		helpNbCard = new JLabel();
 	}
@@ -64,7 +66,15 @@ public class DisplayPlayer{
 		int i;
 		if(app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().size()>0)
 		{
-			for( i = 0; i<app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().size(); i++)
+			if(app.getbG().getMyPlayers().get(0).getMyDiscard().getTopCard()!=null){
+		cardDiscard = new DisplayCard();
+		cardDiscard.updateDisplayCard(0,app.getbG().getMyPlayers().get(0).getMyDiscard().getTopCard().getName(),app.getiM());
+		cardDiscard.setOpaque(false);
+		cardDiscard.setBounds(10, 450, 100, 200);
+		app.getAll().add(cardDiscard,new Integer(17));
+		app.getAll().revalidate();
+			}
+		for( i = 0; i<app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().size(); i++)
 			{
 				handCard[i] = new DisplayCard();
 				handCard[i].updateDisplayCard(i,app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().get(i).getName(),app.getiM());
@@ -74,9 +84,7 @@ public class DisplayPlayer{
 			
 				app.getAll().add(handCard[i],new Integer(i+8));
 				app.getAll().revalidate();
-				app.getAll().add(handCard[i],new Integer(i+8));
-
-
+				//app.getAll().add(handCard[i],new Integer(i+8));
 			}
 		handCard[i+1] = new DisplayCard();
 		handCard[i+1].updateDisplayCard(i,"Dos",app.getiM());
@@ -99,8 +107,10 @@ public class DisplayPlayer{
 			for(int j=0; j<5; j++)
 			{
 				handCard[j].removeAll();
-				handCard[j].repaint();	
+				handCard[j].repaint();
 			}
+			cardDiscard.removeAll();
+			cardDiscard.repaint();
 		}
 		for( i = 0; i<app.getbG().getMyPlayers().get(0).getMyHand().getMyCards().size(); i++)
 		{

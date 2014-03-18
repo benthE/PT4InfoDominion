@@ -88,7 +88,7 @@ public class DisplayBoard implements MouseListener{
                     	bG.buyCard(l.getMyId());
                     	app.setJoueurOr(app.getDp().calculGold(bG.getMyPlayers().get(0).getMyHand().getMyCards()));
                     	app.getDp().refreshGold(app);
-                    	app.revalidate();
+                    	
                     }
                 }
             });
