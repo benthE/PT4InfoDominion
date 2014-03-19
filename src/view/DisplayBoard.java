@@ -81,14 +81,13 @@ public class DisplayBoard implements MouseListener{
                 @Override
                 public void mouseClicked(MouseEvent e) {
                    DisplayCard l = (DisplayCard) e.getSource();
-                    if(bG.getMyCards().get(l.getMyId()).getMyCard().getPrice()<=app.getJoueurOr())
+                    if(bG.getMyCards().get(l.getMyId()).getMyCard().getPrice()<=app.getJoueurOr() && bG.getMyPlayers().get(0).getMyPoints().getPPurchase()>0)
                     {
-                    	app.setJoueurOr(app.getJoueurOr()-(bG.getMyCards().get(l.getMyId()).getMyCard().getPrice()));
-                    	System.out.println("or joueur : " + app.getJoueurOr());
+                    	int tmp = app.getJoueurOr()-(bG.getMyCards().get(l.getMyId()).getMyCard().getPrice());
+                    	//System.out.println("or joueur : " + app.getJoueurOr());
                     	bG.buyCard(l.getMyId());
-                    	app.setJoueurOr(app.getDp().calculGold(bG.getMyPlayers().get(0).getMyHand().getMyCards()));
-                    	app.getDp().refreshGold(app);
-                    	
+                    	app.setJoueurOr(tmp);
+                    	app.getDp().initDisplayPlayer(app.getAll(), bG.getMyPlayers().get(0), app.getiM(), app,false);
                     }
                 }
             });
