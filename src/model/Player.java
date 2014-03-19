@@ -11,6 +11,11 @@ public class Player {
 	//private PaketTrash myTrash=null;
 	private Points myPoints=null;
 	private ArrayList<Card> played  = null;
+    private int myBuy=0;
+    private boolean isPlaying;
+    private int nbaction;
+    private boolean endAction;
+    private boolean endBuy;
 	
 	/**
 	 * Constructor Player
@@ -20,8 +25,13 @@ public class Player {
 		System.out.println("Constructor Init Player");
 		this.initPlayer();
 	}
-	
-	public void initPlayer(){
+
+    public Player() {
+        num = this.getNum();
+        initPlayer();
+    }
+
+    public void initPlayer(){
 		myDeck = new PaketDeck();
 		myDeck.initDeck();
 		myHand = new PaketHand();
@@ -29,6 +39,11 @@ public class Player {
 		myPoints = new Points();
 		played = new ArrayList<Card>();
 		//myTrash = new PaketTrash();
+        this.setMyBuy(1);
+        isPlaying = false;
+        nbaction = 1;
+        endAction = false;
+        endBuy = false;
 	}
 	
 	public void updateDeck(){
@@ -144,10 +159,40 @@ public class Player {
 		return myDiscard;
 	}
 
-	/**
-	 * @param myDiscard the myDiscard to set
-	 */
-	public void setMyDiscard(PaketDiscard myDiscard) {
-		this.myDiscard = myDiscard;
-	}
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean isPlaying) {
+        this.isPlaying = isPlaying;
+    }
+    public int getNbAction() {
+        return nbaction;
+    }
+
+    public void setNbAction(int action) {
+        this.nbaction = action;
+    }
+    public int getMyBuy() {
+        return myBuy;
+    }
+
+    public void setMyBuy(int myBuy) {
+        this.myBuy = myBuy;
+    }
+    public boolean isEndAction() {
+        return endAction;
+    }
+
+    public void setEndAction(boolean endAction) {
+        this.endAction = endAction;
+    }
+
+    public boolean isEndBuy() {
+        return endBuy;
+    }
+
+    public void setEndBuy(boolean endBuy) {
+        this.endBuy = endBuy;
+    }
 }

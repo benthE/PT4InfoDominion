@@ -1,5 +1,5 @@
 package model;
 
 public enum TypeAction {
-	BASE, REACTION, ATTAQUE
+	BASE, REACTION, ATTAQUE, ECART
 }

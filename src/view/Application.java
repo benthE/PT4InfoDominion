@@ -16,7 +16,7 @@ public class Application extends JFrame implements ActionListener{
 		JButton buttonBuy;
 		private ImageManager iM = new ImageManager();
 		private JLayeredPane all = new JLayeredPane();
-		private boardGame bG = new boardGame();
+		private static boardGame bG = new boardGame();
 		private DisplayPlayer dp = new DisplayPlayer();
 		private int aideJoueurOr =0;
         public static JPanel bigCardPanel;
@@ -121,6 +121,7 @@ public class Application extends JFrame implements ActionListener{
             
 			app.add(app.getAll());
 
+
 			app.show(true);
 		}
 
@@ -144,7 +145,7 @@ public class Application extends JFrame implements ActionListener{
 				System.out.println("Tour suivant");
 				bG.getMyPlayers().get(0).discardHand();
 				//dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
-				//dp.initDisplayPlayer(app);
+				dp.initDisplayPlayer(app);
 				bG.getMyPlayers().get(0).updateHand();
 				//dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this);
 				dp.initDisplayPlayer(app);
@@ -169,6 +170,9 @@ public class Application extends JFrame implements ActionListener{
 				setJoueurOr( dp.calculGold(bG.getMyPlayers().get(0).getMyHand().getMyCards()));
 				dp.refreshGold(app);
 				app.add(app.getAll());
+                IAEngine Ia = new IAEngine(bG);
+                Ia.actionPhaseEngine();
+                Ia.buyCardEngine();
 				app.show(true);	
 			}
 			

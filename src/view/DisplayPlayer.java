@@ -50,7 +50,7 @@ public class DisplayPlayer{
 	
 	public void refreshGold(Application app){
 		helpGold = new JLabel();
-		helpGold.setText("Pièces d'or : " + app.getJoueurOr());
+		helpGold.setText("Piï¿½ces d'or : " + app.getJoueurOr());
 		helpGoldPanel = new JPanel();
 		helpGoldPanel.add(helpGold);
 		helpGoldPanel.setBounds(780, 400, 100, 30);
@@ -71,7 +71,7 @@ public class DisplayPlayer{
 				
 				handCard[i].setOpaque(false);
 				handCard[i].setBounds((i+1)*150, 500, 100, 200);
-			
+
 				app.getAll().add(handCard[i],new Integer(i+8));
 				app.getAll().revalidate();
 				app.getAll().add(handCard[i],new Integer(i+8));
@@ -128,16 +128,17 @@ public class DisplayPlayer{
             public void mouseClicked(MouseEvent e) {
 
                 DisplayCard l = (DisplayCard) e.getSource();
-                
+
                 System.out.println(l.getMyId());
-                handCard[l.getMyId()].setVisible(false);//enlève la carte à l'écran
+                handCard[l.getMyId()].setVisible(false);//enlï¿½ve la carte ï¿½ l'ï¿½cran
                 
                 app.getbG().getMyPlayers().get(0).playCard(l.getMyId());
-                played.add(handCard[l.getMyId()]);//on en fait une carte jouée
+                played.add(handCard[l.getMyId()]);//on en fait une carte jouï¿½e
                 //app.getAll().add(played.get(played.size()-1));
                 app.revalidate();
             }
         });
+
 		}
 	}
 }

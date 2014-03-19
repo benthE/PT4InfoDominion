@@ -14,7 +14,7 @@ public class Points {
 		System.out.println("Constructor Init Points");
 		pAction = 1;
 		pPurchase = 1;
-		pMoney = 0;
+		pMoney = 4;
 		pCard = 0;
 	}
 	

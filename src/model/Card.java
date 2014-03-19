@@ -3,6 +3,8 @@ package model;
 public class Card {
 		private String name;
 		private int price;
+    private TypeAction myTypeAction;
+    private int size;
 		
 		/** 
 		 * Constructor Init 
@@ -61,4 +63,15 @@ public class Card {
 		public void setPrice(int price) {
 			this.price = price;
 		}
+    public TypeAction getMyTypeAction() {
+        return myTypeAction;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
 }
