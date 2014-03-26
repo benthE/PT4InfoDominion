@@ -139,7 +139,6 @@ public class Application extends JFrame implements ActionListener{
 			{
 				
 				setJoueurOr(0);
-
 				System.out.println("Tour suivant");
 				bG.getMyPlayers().get(0).discardHand();
 				dp.initDisplayPlayer(all,bG.getMyPlayers().get(0), iM, this,true);

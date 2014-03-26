@@ -35,11 +35,12 @@ public class Player {
 		myDeck.getMyCards().addAll(myDiscard.getMyCards());
 		myDiscard.setMyCards( new ArrayList<Card>());
 		myDiscard.setTopCard(null);
-		myPoints = new Points();
+		
 	}
 	
 	public void updateHand(){
 		int nb = 0;
+		myPoints = new Points();
 		while(myHand.getMyCards().size() < 5)
 			{
 				if(myDeck.getMyCards().size()==0)
